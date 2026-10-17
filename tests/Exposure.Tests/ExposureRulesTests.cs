@@ -32,19 +32,28 @@ public class ExposureRulesTests
     [Fact]
     public void Looting_adds_half_as_much_at_a_slowdown_of_two()
     {
-        Assert.Equal(15f, ExposureRules.AfterOneOff(10f, 20f, 2));
+        Assert.Equal((5, 0.0), ExposureRules.OneOff(10, 2, 0));
+    }
+
+    [Fact]
+    public void A_fraction_left_over_is_added_on_the_next_loot()
+    {
+        var (first, carried) = ExposureRules.OneOff(5, 2, 0);
+        var (second, _) = ExposureRules.OneOff(5, 2, carried);
+
+        Assert.Equal(5, first + second);
     }
 
     [Fact]
     public void Something_that_lowers_exposure_keeps_its_full_effect()
     {
-        Assert.Equal(5f, ExposureRules.AfterOneOff(10f, 5f, 2));
+        Assert.Equal((-5, 0.5), ExposureRules.OneOff(-5, 2, 0.5));
     }
 
     [Fact]
     public void A_slowdown_below_one_never_speeds_exposure_up()
     {
         Assert.Equal(1f, ExposureRules.TimeRate(1f, 0.1));
-        Assert.Equal(20f, ExposureRules.AfterOneOff(10f, 20f, double.NaN));
+        Assert.Equal((10, 0.0), ExposureRules.OneOff(10, double.NaN, 0));
     }
 }

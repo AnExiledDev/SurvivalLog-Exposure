@@ -25,7 +25,17 @@ public static class ExposureRules
     public static float RunRate(float gameRate, bool isRunningExposed) =>
         isRunningExposed || gameRate <= 0 ? gameRate : 0f;
 
-    /// <summary>What a one-off add should have left, given exposure before and after the game applied it.</summary>
-    public static float AfterOneOff(float before, float after, double slowdown) =>
-        after <= before ? after : before + (float)((after - before) / ClampSlowdown(slowdown));
+    /// <summary>
+    /// The whole part of a slowed one-off add, and the fraction carried to the next one: the game only adds whole
+    /// numbers, so a 5 slowed by 2 gives 2 now and 3 next time instead of 2 every time. A drop keeps its full effect.
+    /// </summary>
+    public static (int Value, double Carried) OneOff(int value, double slowdown, double carried)
+    {
+        if (value <= 0) return (value, carried);
+
+        var share = value / ClampSlowdown(slowdown) + carried;
+        var whole = Math.Floor(share);
+
+        return ((int)whole, share - whole);
+    }
 }

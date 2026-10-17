@@ -8,13 +8,15 @@ namespace Exposure.Adapters;
 /// <summary>
 /// ExploreManager.Update adds TimeExposure, and MoveExposure while running, every frame; AddExposure is the one
 /// funnel for searches, loot (reward sets) and event effects. The per-frame rates are swapped for the slowed ones
-/// around the game's update and put back after, so the game's own value is never lost.
+/// around the game's update and put back after, so the game's own value is never lost. A one-off add is slowed
+/// before the game applies it, since AddExposure updates the bar and checks for the end of the trip itself.
 /// </summary>
 internal static class ExposurePatch
 {
     private static ExposureSettings _settings = new(1, true, 1);
     private static Action<string> _log = _ => { };
     private static bool _hasReportedFailure;
+    private static double _carried;
 
     public struct Rates
     {
@@ -30,17 +32,17 @@ internal static class ExposurePatch
         _settings = settings;
         _log = log;
         Patch(harmony, nameof(ExploreManager.Update), nameof(BeforeUpdate), nameof(AfterUpdate), "time and running exposure keep the game's rate");
-        Patch(harmony, nameof(ExploreManager.AddExposure), nameof(BeforeAdd), nameof(AfterAdd), "searching and looting keep the game's exposure");
+        Patch(harmony, nameof(ExploreManager.AddExposure), nameof(BeforeAdd), null, "searching and looting keep the game's exposure");
     }
 
-    private static void Patch(Harmony harmony, string method, string prefix, string postfix, string consequence)
+    private static void Patch(Harmony harmony, string method, string prefix, string? postfix, string consequence)
     {
         try
         {
             harmony.Patch(
                 AccessTools.Method(typeof(ExploreManager), method),
                 prefix: new HarmonyMethod(typeof(ExposurePatch), prefix),
-                postfix: new HarmonyMethod(typeof(ExposurePatch), postfix));
+                postfix: postfix is null ? null : new HarmonyMethod(typeof(ExposurePatch), postfix));
             _log($"hooked ExploreManager.{method}");
         }
         catch (Exception ex)
@@ -85,32 +87,9 @@ internal static class ExposurePatch
         }
     }
 
-    private static void BeforeAdd(ExploreManager __instance, out float __state)
+    private static void BeforeAdd(ref int value)
     {
-        __state = float.NaN;
-
-        try
-        {
-            __state = __instance.CurExposure;
-        }
-        catch (Exception ex)
-        {
-            ReportOnce(ex);
-        }
-    }
-
-    private static void AfterAdd(ExploreManager __instance, float __state)
-    {
-        if (float.IsNaN(__state)) return;
-
-        try
-        {
-            __instance.CurExposure = ExposureRules.AfterOneOff(__state, __instance.CurExposure, _settings.LootSlowdown);
-        }
-        catch (Exception ex)
-        {
-            ReportOnce(ex);
-        }
+        (value, _carried) = ExposureRules.OneOff(value, _settings.LootSlowdown, _carried);
     }
 
     private static void ReportOnce(Exception ex)
