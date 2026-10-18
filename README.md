@@ -32,7 +32,8 @@ The mod shows no text of its own in game, so it works the same in English and Ch
 ## Install
 
 1. Install the [BepInEx Pack for Survival Log](https://www.nexusmods.com/survivallog/mods/12) (if no other mods were installed before, start the game once so BepInEx finishes setup, then quit).
-2. Download `Exposure.dll` from the [latest release](https://github.com/AnExiledDev/SurvivalLog-Exposure/releases/latest) and put it in the `BepInEx\plugins` folder inside the game folder (the folder with the game .exe). Full path example:
+2. Download `Exposure-x.y.z.zip` from the [latest release](https://github.com/AnExiledDev/SurvivalLog-Exposure/releases/latest) or from Nexus Mods.
+3. Extract the zip into the game folder (the folder with `SurvivalLog.exe`). It holds a `BepInEx` folder, so the DLL lands in the right place. When asked, merge the folders. The result should be:
    `C:\Program Files (x86)\Steam\steamapps\common\Survival Log\BepInEx\plugins\Exposure.dll`
 
 ## Uninstall

@@ -29,7 +29,8 @@ With a slowdown above 1, a small add from searching can show as 0; the fraction 
 [size=5]Installation[/size]
 [list=1]
 [*]Install [url=https://www.nexusmods.com/survivallog/mods/12]BepInEx[/url] [i](if no other mods were installed before, start the game once so BepInEx finishes setup, then quit)[/i].[/*]
-[*]Put [font=Courier New]Exposure.dll[/font] in the BepInEx\plugins folder inside the game folder. Full path example:
+[*]Download the zip from the Files tab.[/*]
+[*]Extract it into the game folder (the folder with [font=Courier New]SurvivalLog.exe[/font]). The zip holds a BepInEx folder, so the DLL lands in the right place. When asked, merge the folders. The result should be:
 [code]C:\Program Files (x86)\Steam\steamapps\common\Survival Log\BepInEx\plugins\Exposure.dll[/code][/*]
 [/list]
 
@@ -80,7 +81,8 @@ Exposure 只改变暴露值上涨的快慢，不会往存档里添加任何内�
 [size=5]安装[/size]
 [list=1]
 [*]安装 [url=https://www.nexusmods.com/survivallog/mods/12]BepInEx[/url] [i]（如果之前没有装过其他模组，先启动一次游戏，让 BepInEx 完成初始化，然后退出）[/i]。[/*]
-[*]把 [font=Courier New]Exposure.dll[/font] 放进游戏目录下的 BepInEx\plugins 文件夹。完整路径示例：
+[*]在「文件」页下载压缩包。[/*]
+[*]把压缩包解压到游戏目录（[font=Courier New]SurvivalLog.exe[/font] 所在的文件夹）。压缩包里带有 BepInEx 文件夹，DLL 会自动放到正确位置。如果提示合并文件夹，选择合并。解压后应为：
 [code]C:\Program Files (x86)\Steam\steamapps\common\Survival Log\BepInEx\plugins\Exposure.dll[/code][/*]
 [/list]
 
