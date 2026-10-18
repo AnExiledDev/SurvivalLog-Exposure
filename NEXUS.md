@@ -18,7 +18,7 @@ Exposure only changes how fast the bar fills. It adds nothing to your save and d
 The mod shows no text of its own in game, so it works the same in English and Chinese.
 
 [size=5]Known issues[/size]
-With a slowdown above 1, a small add from searching can show as 0; the fraction is added with the next one. If a game update changes how exposure works, the mod writes a line to [font=Courier New]BepInEx\LogOutput.log[/font] and the game's own exposure is used. If you run into anything strange, please tell me (see Feedback below).
+With a slowdown above 1, a small add from searching can show as 0; the fraction is added with the next one.
 
 [size=5]Requirements[/size]
 [list]
@@ -70,7 +70,7 @@ Exposure 只改变暴露值上涨的快慢，不会往存档里添加任何内�
 模组在游戏中不显示任何自己的文字，所以英文和中文下效果完全一样。
 
 [size=5]已知问题[/size]
-慢速倍数大于 1 时，一次很小的翻找可能显示为增加 0，剩下的小数会在下一次一起加上。如果游戏更新改变了暴露值的机制，模组会在 [font=Courier New]BepInEx\LogOutput.log[/font] 中写一行说明，并改用游戏原本的暴露值。遇到任何异常，欢迎告诉我（见下方「反馈」）。
+慢速倍数大于 1 时，一次很小的翻找可能显示为增加 0，剩下的小数会在下一次一起加上。
 
 [size=5]前置要求[/size]
 [list]

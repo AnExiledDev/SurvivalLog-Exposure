@@ -20,9 +20,7 @@ The mod shows no text of its own in game, so it works the same in English and Ch
 ## Known issues and limits
 
 - With a slowdown above 1, a small add from searching can show as 0. The fraction is not lost: it is added with the next search or loot.
-- If a game update changes how exposure works, the mod writes a line to `BepInEx\LogOutput.log` and the game's own exposure is used for whatever it could not change.
 - Settings are read when the game starts, so a change needs a restart.
-- If anything feels off, please tell me (see [Feedback](#feedback-and-bug-reports)).
 
 ## Requirements
 
