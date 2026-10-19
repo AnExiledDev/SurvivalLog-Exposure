@@ -20,7 +20,7 @@ The mod shows no text of its own in game, so it works the same in English and Ch
 ## Known issues and limits
 
 - With a slowdown above 1, a small add from searching can show as 0. The fraction is not lost: it is added with the next search or loot.
-- Settings changed on the Mod Manager's Mods screen take effect at once; a change made in the file needs a restart.
+- Settings changed on the Mod Manager's Mods screen take effect at once with Exiled's Toolkit installed; a change made in the file needs a restart.
 
 ## Requirements
 
@@ -46,7 +46,7 @@ None. The mod has no hotkeys or buttons; it works on its own once installed.
 
 ## Configuration
 
-Settings live in `BepInEx\config\com.dev.survivallog.exposure.cfg`, created the first time the game starts with the mod. Change them in game on the Mod Manager's Mods screen, where they take effect at once, or edit the file while the game is closed. See [CONFIG.md](CONFIG.md) for every setting.
+Settings live in `BepInEx\config\com.dev.survivallog.exposure.cfg`, created the first time the game starts with the mod. Change them in game on the Mod Manager's Mods screen, where they take effect at once, or edit the file while the game is closed. See [CONFIG.md](CONFIG.md) for every setting. Without Exiled's Toolkit installed, changes made on the Mods screen take effect at the next game start instead.
 
 ## Troubleshooting
 
@@ -54,7 +54,7 @@ Check `BepInEx\LogOutput.log` for `Exposure 0.2.0 started`, then a line with you
 
 ## Feedback and bug reports
 
-Found a bug, have an idea, or something feels off? Come say so on the Core Directive Discord: https://discord.gg/trTsyxUFqg . You can also leave a comment on the Nexus page or [open an issue](https://github.com/AnExiledDev/SurvivalLog-Exposure/issues). When reporting a bug, attach `BepInEx\LogOutput.log`.
+Found a bug, have an idea, or something feels off? Come say so on the Core Directive Discord: https://discord.gg/trTsyxUFqg . You can also post in the Posts tab of the mod's Nexus Mods page. When reporting a bug, attach `BepInEx\LogOutput.log`.
 
 To reach me directly, message `exiled.dev` on Discord; you can find me in the [official Survival Log Discord](https://discord.gg/MZGg4gQAUe). I'm also on X as [@AnExiledDev](https://x.com/AnExiledDev).
 
