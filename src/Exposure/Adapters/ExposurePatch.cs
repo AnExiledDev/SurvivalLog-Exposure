@@ -27,13 +27,15 @@ internal static class ExposurePatch
         public float SlowRun;
     }
 
-    public static void Apply(Harmony harmony, ExposureSettings settings, Action<string> log)
+    public static void Apply(Harmony harmony, Action<string> log)
     {
-        _settings = settings;
         _log = log;
         Patch(harmony, nameof(ExploreManager.Update), nameof(BeforeUpdate), nameof(AfterUpdate), "time and running exposure keep the game's rate");
         Patch(harmony, nameof(ExploreManager.AddExposure), nameof(BeforeAdd), null, "searching and looting keep the game's exposure");
     }
+
+    /// <summary>Used from the next frame. Set on the main thread, where the game updates exposure.</summary>
+    public static void UseSettings(ExposureSettings settings) => _settings = settings;
 
     private static void Patch(Harmony harmony, string method, string prefix, string? postfix, string consequence)
     {
