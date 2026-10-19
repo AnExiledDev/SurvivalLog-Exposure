@@ -1,6 +1,5 @@
 using BepInEx;
 using BepInEx.Unity.IL2CPP;
-using ExiledToolkit;
 using Exposure.Adapters;
 using Exposure.Core;
 using HarmonyLib;
@@ -8,7 +7,7 @@ using HarmonyLib;
 namespace Exposure;
 
 [BepInPlugin(Guid, "Exposure", Version)]
-[BepInDependency(ExiledToolkit.Plugin.Guid, ">=0.4.0")]
+[BepInDependency(OptionalLive.ToolkitGuid, BepInDependency.DependencyFlags.SoftDependency)]
 public sealed class Plugin : BasePlugin
 {
     private const string Guid = "com.dev.survivallog.exposure";
@@ -16,6 +15,8 @@ public sealed class Plugin : BasePlugin
 
     public override void Load()
     {
+        if (!OptionalLive.IsToolkitInstalled) Log.LogInfo(OptionalLive.MissingNote);
+
         var timeSlowdown = Config.Bind("Exposure", "TimeSlowdown", 2.0,
             $"On an expedition, exposure from time spent out rises this many times slower. 1 is the game's rate. From {ExposureRules.MinSlowdown} to {ExposureRules.MaxSlowdown}.\n" +
             $"探索时，随时间上涨的暴露值，上涨速度会除以这个数。1 为游戏原速。范围 {ExposureRules.MinSlowdown} 到 {ExposureRules.MaxSlowdown}。");
@@ -28,7 +29,7 @@ public sealed class Plugin : BasePlugin
 
         Log.LogInfo($"Exposure {Version} started");
         ExposurePatch.Apply(new Harmony(Guid), Log.LogInfo);
-        LiveSettings.Watch(() =>
+        OptionalLive.Watch(() =>
         {
             var settings = new ExposureSettings(ExposureRules.ClampSlowdown(timeSlowdown.Value), isRunningExposed.Value, ExposureRules.ClampSlowdown(lootSlowdown.Value));
 
