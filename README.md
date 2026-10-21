@@ -50,7 +50,7 @@ Settings live in `BepInEx\config\com.dev.survivallog.exposure.cfg`, created the 
 
 ## Troubleshooting
 
-Check `BepInEx\LogOutput.log` for `Exposure 0.2.0 started`, then a line with your settings (for example `time /2, running off, loot /2`), which comes again each time you change one. Below it, `hooked ExploreManager.Update` and `hooked ExploreManager.AddExposure` mean both parts of the mod are working. A line starting with `could not hook` names the part that is off and what that means in game.
+Check `BepInEx\LogOutput.log` for `Exposure 0.2.1 started`, then a line with your settings (for example `time /2, running off, loot /2`), which comes again each time you change one. Below it, `hooked ExploreManager.Update` and `hooked ExploreManager.AddExposure` mean both parts of the mod are working. A line starting with `could not hook` names the part that is off and what that means in game.
 
 ## Feedback and bug reports
 
