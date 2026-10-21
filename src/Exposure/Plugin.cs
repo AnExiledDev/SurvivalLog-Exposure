@@ -11,7 +11,7 @@ namespace Exposure;
 public sealed class Plugin : BasePlugin
 {
     private const string Guid = "com.dev.survivallog.exposure";
-    private const string Version = "0.2.0";
+    private const string Version = "0.2.1";
 
     public override void Load()
     {
@@ -28,7 +28,7 @@ public sealed class Plugin : BasePlugin
             $"翻找、拾取和事件一次性增加的暴露值会除以这个数。1 为游戏原量。范围 {ExposureRules.MinSlowdown} 到 {ExposureRules.MaxSlowdown}。");
 
         Log.LogInfo($"Exposure {Version} started");
-        ExposurePatch.Apply(new Harmony(Guid), Log.LogInfo);
+        ExposurePatch.Apply(new Harmony(Guid), Write);
         OptionalLive.Watch(() =>
         {
             var settings = new ExposureSettings(ExposureRules.ClampSlowdown(timeSlowdown.Value), isRunningExposed.Value, ExposureRules.ClampSlowdown(lootSlowdown.Value));
@@ -36,5 +36,11 @@ public sealed class Plugin : BasePlugin
             ExposurePatch.UseSettings(settings);
             Log.LogInfo($"time /{settings.TimeSlowdown}, running {(settings.IsRunningExposed ? "on" : "off")}, loot /{settings.LootSlowdown}");
         }, timeSlowdown, isRunningExposed, lootSlowdown);
+    }
+
+    private void Write(string message)
+    {
+        if (HookFailure.Is(message)) Log.LogError(message);
+        else Log.LogInfo(message);
     }
 }
