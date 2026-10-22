@@ -69,7 +69,7 @@ public sealed class Plugin : BasePlugin
 
         Log.LogInfo($"Exposure {Version} started");
         // Meter and cost hints: one line here.
-        // Warnings and trip summary: one line here.
+        TripSummaryAndWarnings.Start(this, new Harmony(Guid), Write);
         ExposurePatch.Apply(new Harmony(Guid), Write);
         OptionalLive.Watch(() =>
         {
