@@ -28,6 +28,8 @@ public sealed class Plugin : BasePlugin
             $"翻找、拾取和事件一次性增加的暴露值会除以这个数。1 为游戏原量。范围 {ExposureRules.MinSlowdown} 到 {ExposureRules.MaxSlowdown}。");
 
         Log.LogInfo($"Exposure {Version} started");
+        // Meter and cost hints: one line here.
+        // Warnings and trip summary: one line here.
         ExposurePatch.Apply(new Harmony(Guid), Write);
         OptionalLive.Watch(() =>
         {
