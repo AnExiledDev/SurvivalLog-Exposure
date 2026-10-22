@@ -35,7 +35,7 @@ internal sealed class MeterCostTable
             if (func == null) continue;
 
             var reward = func.RewardSetId > 0 && rewards.TryGetValue(func.RewardSetId, out var set) && set != null ? set.ExposureValue : 0;
-            var funcParts = MeterCosts.Parts(reward, Steps(func, actions, effects));
+            var funcParts = MeterCosts.Parts(new RewardStep(func.RewardSetId, reward), Steps(func, actions, effects));
 
             if (funcParts.Count > 0) parts[func.ID] = funcParts;
         }
@@ -65,7 +65,7 @@ internal sealed class MeterCostTable
         {
             var effect = EffectOf(ids[i], actions, effects);
 
-            if (effect != null) steps.Add(new ActionStep(effect.ConfigName ?? "", effect.ExposureValue));
+            if (effect != null) steps.Add(new ActionStep(ids[i], effect.ID, effect.ConfigName ?? "", effect.ExposureValue));
         }
 
         return steps;
