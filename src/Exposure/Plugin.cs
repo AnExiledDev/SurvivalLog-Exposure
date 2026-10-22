@@ -68,7 +68,7 @@ public sealed class Plugin : BasePlugin
             "单个地点的额外倍数，格式为 编号=倍数，用英文逗号分隔，例如 1002=1.5, 1005=2。编号：1000「社区检修小屋」，1001「加油站」，1002「废弃学校」，1003「科技公司」，1004「残破超市」，1005「废弃医院」。在天数倍数之上再计算。范围 0.1 到 10。" + CustomOnlyZh);
 
         Log.LogInfo($"Exposure {Version} started");
-        // Meter and cost hints: one line here.
+        MeterPage.Start(Config, Write);
         TripSummaryAndWarnings.Start(this, new Harmony(Guid), Write);
         ExposurePatch.Apply(new Harmony(Guid), Write);
         OptionalLive.Watch(() =>

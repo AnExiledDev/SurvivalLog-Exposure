@@ -29,6 +29,10 @@
     <Reference Include="$(ToolkitDll)" Private="false" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="page.js" LogicalName="Exposure.page.js" />
+  </ItemGroup>
+
   <!-- What the Mod Manager's Mods screen shows about this mod. -->
   <ItemGroup>
     <AssemblyMetadata Include="ModManager.Name" Value="Exposure&#10;暴露值调整" />
