@@ -113,6 +113,16 @@ public class WarningRulesTests
     }
 
     [Fact]
+    public void A_bar_resting_exactly_on_a_level_does_not_warn_again_as_it_rises()
+    {
+        var atLevel = WarningRules.Next(new WarningWatch(40), 50, Default);
+        var rising = WarningRules.Next(atLevel.Watch, 51, Default);
+
+        Assert.Equal(50, atLevel.ReachedAt);
+        Assert.Null(rising.ReachedAt);
+    }
+
+    [Fact]
     public void Reaching_the_pause_percent_calls_for_a_pause_once()
     {
         var levels = Default with { PauseAt = 75 };

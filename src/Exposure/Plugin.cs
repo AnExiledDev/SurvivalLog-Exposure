@@ -13,7 +13,7 @@ namespace Exposure;
 public sealed class Plugin : BasePlugin
 {
     private const string Guid = "com.dev.survivallog.exposure";
-    private const string Version = "0.2.1";
+    private const string Version = "0.3.0";
 
     private const string Range = "From 1 to 100, or from 0.25 when AllowFasterThanGame is on.";
     private const string RangeZh = "范围 1 到 100，开启「AllowFasterThanGame」时最低为 0.25。";

@@ -47,6 +47,13 @@ public class ExposureSettingsTests
     }
 
     [Fact]
+    public void A_slowdown_after_danger_never_drops_below_the_floor()
+    {
+        Assert.Equal(1, ExposureRules.Effective(2, danger: 10));
+        Assert.Equal(ExposureRules.FasterFloor, ExposureRules.Effective(0.5, danger: 10, ExposureRules.FasterFloor));
+    }
+
+    [Fact]
     public void With_the_opt_in_a_slowdown_below_one_makes_exposure_rise_faster()
     {
         var settings = new ExposureSettings(0.5, IsRunningExposed: true, 0.5) { IsFasterThanGameAllowed = true };
