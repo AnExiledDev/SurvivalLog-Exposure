@@ -39,7 +39,7 @@
     <AssemblyMetadata Include="ModManager.Description" Value="Slower exposure on expeditions, with the bar shown in numbers, the cost of each search, warnings and a trip summary. Presets from Vanilla to Hardcore, a slider for each kind of exposure, and danger that grows by day or location.&#10;探索时暴露值上涨更慢，暴露值条显示具体数字和每次翻找的消耗，并有提醒和探索总结。提供从 Vanilla 到 Hardcore 的预设、每类暴露值的单独设置，以及随天数或地点增加的危险度。" />
     <AssemblyMetadata Include="ModManager.Author" Value="AnExiledDev" />
     <AssemblyMetadata Include="ModManager.Category" Value="Balance" />
-    <AssemblyMetadata Include="ModManager.GameVersion" Value="1.1.19131" />
+    <AssemblyMetadata Include="ModManager.GameVersion" Value="1.1.19611" />
     <AssemblyMetadata Include="ModManager.Settings" Value="Restart" />
     <AssemblyMetadata Include="ModManager.NexusId" Value="48" />
     <AssemblyMetadata Include="ModManager.GitHub" Value="AnExiledDev/SurvivalLog-Exposure" />
