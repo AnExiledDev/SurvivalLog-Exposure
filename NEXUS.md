@@ -2,6 +2,8 @@ Name: Exposure
 Summary: Stay out longer on expeditions. The Exposure bar fills half as fast over time, running adds nothing, and searches add half, with real numbers on the bar, the cost of each search, warnings at 50, 75 and 90% and a trip summary. Presets from Vanilla to Hardcore, a setting for each kind of exposure, and danger that grows by day or location.
 
 Description (BBCode):
+[center][img]https://sldb.core-directive.com/media/save/1-save-safe.png[/img][/center]
+
 Always running out of time on an expedition before you have seen half the map? Exposure slows down how fast the Exposure bar fills, so you can stay out longer and search more before the zombies find you.
 
 [size=5]Main features[/size]
