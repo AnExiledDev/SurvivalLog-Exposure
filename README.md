@@ -29,22 +29,21 @@ Text the mod shows in game (the time to full, warnings and the trip summary) is 
 - With a slowdown above 1, a small add from searching can show as 0. The fraction is not lost: it is added with the next search or loot.
 - The time to full is an estimate from the last few seconds, in real time, so it changes with game speed and pauses. It can briefly disagree with the game's own bar, which redraws every 2 seconds.
 - Costs are shown on furniture buttons only. Events and other jumps not tied to a button have no cost shown.
-- Warning and trip summary notices need Exiled's Toolkit. Without it, they are written to the log only; the warning sound still plays.
 - Pausing at a warning needs Time Control with `TimeControlOnExpeditions` on, since the game cannot pause or carry on during an expedition by itself.
 - No event in the current game adds exposure, so `EventSlowdown` changes nothing for now.
-- Settings changed on the Mod Manager's Mods screen take effect at once with Exiled's Toolkit installed; a change made in the file needs a restart.
+- Settings changed on the Mod Manager's Mods screen take effect at once; a change made in the file needs a restart.
 
 ## Requirements
 
 - Survival Log 1.1.19611. Built for this version; a game update can break it until the mod is updated.
 - The [BepInEx Pack for Survival Log](https://www.nexusmods.com/survivallog/mods/12), the BepInEx 6 (IL2CPP) build for the game.
-- Optional: [Exiled's Toolkit](https://github.com/AnExiledDev/SurvivalLog-ExiledToolkit) 0.4.0 or newer. With it, settings changed on the Mod Manager's Mods screen take effect without restarting the game. Without it, they take effect at the next game start. It also shows the warning and trip summary notices.
+- [Exiled's Toolkit](https://github.com/AnExiledDev/SurvivalLog-ExiledToolkit) 0.11.0 or newer. Exposure does not load without it. It shows the warning and trip summary notices as toasts and applies settings changed on the Mod Manager's Mods screen without a restart.
 - Optional: [Time Control](https://www.nexusmods.com/survivallog/mods/47), with `TimeControlOnExpeditions` on, to pause the game at a warning.
 
 ## Install
 
 1. Install the [BepInEx Pack for Survival Log](https://www.nexusmods.com/survivallog/mods/12) (if no other mods were installed before, start the game once so BepInEx finishes setup, then quit).
-2. Optional, to change settings without a restart: install Exiled's Toolkit. Download `ExiledToolkit-x.y.z.zip` from [its latest release](https://github.com/AnExiledDev/SurvivalLog-ExiledToolkit/releases/latest) or from [Nexus Mods](https://www.nexusmods.com/survivallog/mods/61), and extract it into the game folder (the folder with `SurvivalLog.exe`).
+2. Install Exiled's Toolkit. Download `ExiledToolkit-x.y.z.zip` from [its latest release](https://github.com/AnExiledDev/SurvivalLog-ExiledToolkit/releases/latest) or from [Nexus Mods](https://www.nexusmods.com/survivallog/mods/61), and extract it into the game folder (the folder with `SurvivalLog.exe`).
 3. Download `Exposure-x.y.z.zip` from the [latest release](https://github.com/AnExiledDev/SurvivalLog-Exposure/releases/latest) or from [Nexus Mods](https://www.nexusmods.com/survivallog/mods/48).
 4. Extract the zip into the game folder (the folder with `SurvivalLog.exe`). It holds a `BepInEx` folder, so the DLL lands in the right place. When asked, merge the folders. The result should be:
    `C:\Program Files (x86)\Steam\steamapps\common\Survival Log\BepInEx\plugins\Exposure.dll`
@@ -59,7 +58,7 @@ None. The mod has no hotkeys or buttons; it works on its own once installed.
 
 ## Configuration
 
-Settings live in `BepInEx\config\com.dev.survivallog.exposure.cfg`, created the first time the game starts with the mod. Change them in game on the Mod Manager's Mods screen, where they take effect at once, or edit the file while the game is closed. See [CONFIG.md](CONFIG.md) for every setting. Without Exiled's Toolkit installed, changes made on the Mods screen take effect at the next game start instead.
+Settings live in `BepInEx\config\com.dev.survivallog.exposure.cfg`, created the first time the game starts with the mod. Change them in game on the Mod Manager's Mods screen, where they take effect at once, or edit the file while the game is closed. See [CONFIG.md](CONFIG.md) for every setting.
 
 ## Troubleshooting
 

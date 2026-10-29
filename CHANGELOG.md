@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.1
+
+- Exiled's Toolkit 0.11.0 or newer is now required. It shows the warning and trip summary notices.
+- Made for Survival Log 1.1.19611.
+
 ## 0.3.0
 
 - The Exposure bar shows its points as numbers (such as 62 / 100) and about how long until it is full at the current pace.

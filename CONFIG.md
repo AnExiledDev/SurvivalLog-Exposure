@@ -1,6 +1,6 @@
 # Exposure settings
 
-Settings live in `BepInEx\config\com.dev.survivallog.exposure.cfg`, created the first time the game starts with the mod. Change them in game on the Mod Manager's Mods screen, where they take effect at once, or edit the file while the game is closed. Delete the file to get the defaults back. Without Exiled's Toolkit installed, changes made on the Mods screen take effect at the next game start instead.
+Settings live in `BepInEx\config\com.dev.survivallog.exposure.cfg`, created the first time the game starts with the mod. Change them in game on the Mod Manager's Mods screen, where they take effect at once, or edit the file while the game is closed. Delete the file to get the defaults back.
 
 ## Exposure
 
@@ -59,7 +59,7 @@ The log shows the location id and day at the start of each expedition (`expediti
 | Setting | Default | What it does |
 | --- | --- | --- |
 | `Thresholds` | `50,75,90` | Warn when exposure first reaches each of these percents of the bar. Whole numbers from 1 to 100, separated by commas. Each warns once per trip. Leave empty for no warnings. |
-| `Toast` | `true` | Show a notice when a warning percent is reached. The notice needs Exiled's Toolkit; every warning is also written to the log. |
+| `Toast` | `true` | Show a notice when a warning percent is reached. Every warning is also written to the log. |
 | `Sound` | `true` | Play the game's own exposure alarm, the zombie roar, when a warning percent is reached. |
 | `PauseAt` | `0` | Pause the game when exposure first reaches this percent. `0` is off. The game cannot pause or carry on during an expedition by itself, so this needs Time Control with `TimeControlOnExpeditions` on; without it the game is not paused and the warning says why. |
 
@@ -67,4 +67,4 @@ The log shows the location id and day at the start of each expedition (`expediti
 
 | Setting | Default | What it does |
 | --- | --- | --- |
-| `ShowSummary` | `true` | Once you are home from an expedition, show a notice with the exposure the trip added from each source, and how many items you brought home and what they are worth. The notice needs Exiled's Toolkit; the summary is always written to the log. |
+| `ShowSummary` | `true` | Once you are home from an expedition, show a notice with the exposure the trip added from each source, and how many items you brought home and what they are worth. The summary is always written to the log. |
