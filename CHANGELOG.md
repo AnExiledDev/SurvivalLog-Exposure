@@ -3,8 +3,8 @@
 ## 0.3.1
 
 - **Warning:** needs Exiled's Toolkit 0.11.0 or newer. Update the Toolkit first.
-- Exiled's Toolkit 0.11.0 or newer is now required. It shows the warning and trip summary notices.
-- Made for Survival Log 1.1.19611.
+- Exiled's Toolkit now shows the warning and trip summary notices.
+- Made for Survival Log 1.1.20151.
 
 ## 0.3.0
 
