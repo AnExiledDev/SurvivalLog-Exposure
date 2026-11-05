@@ -1,8 +1,7 @@
 using System;
+using ExiledToolkit.Game;
 using Exposure.Core;
-using GameCore.HotUpdate;
 using GameCore.HotUpdate.Battle.Logic;
-using HarmonyLib;
 
 namespace Exposure.Adapters;
 
@@ -15,10 +14,13 @@ namespace Exposure.Adapters;
 /// </summary>
 internal static class ExposurePatch
 {
+    private const string ChangeFailure = "changing exposure, the game's exposure is used where it failed";
+    private const string FeedFailure = "feeding exposure to the meter and trip summary, they may miss some exposure";
+    private const string DayFailure = "reading the game's day, the day ramp is left out of danger";
+
     private static readonly TripTracker Trip = new();
-    private static readonly FailureLog ChangeFailure = new("exposure change failed, the game's exposure is used where it failed");
-    private static readonly FailureLog FeedFailure = new("exposure feed failed, the meter and trip summary may miss some exposure");
-    private static readonly FailureLog DayFailure = new("the game's day could not be read, the day ramp is left out of danger");
+    private static PatchKit? _hooks;
+    private static Action<string> _log = _ => { };
     private static ExposureSettings _settings = new(1, true, 1);
     private static double _carried;
     private static double _danger = 1;
@@ -50,13 +52,20 @@ internal static class ExposurePatch
 
     private readonly record struct PendingOneOff(ExposureSource Source, float Before);
 
-    public static void Apply(Harmony harmony, Action<string> log)
+    public static void Apply(PatchKit hooks, Action<string> log)
     {
-        Hooks.Log = log;
-        Hooks.Patch(harmony, typeof(ExploreManager), nameof(ExploreManager.Update), typeof(ExposurePatch), nameof(BeforeUpdate), nameof(AfterUpdate), "time and running exposure keep the game's rate");
-        Hooks.Patch(harmony, typeof(ExploreManager), nameof(ExploreManager.AddExposure), typeof(ExposurePatch), nameof(BeforeAdd), nameof(AfterAdd), "searching and looting keep the game's exposure");
-        SourcePatch.Apply(harmony);
-        TripPatch.Apply(harmony);
+        _hooks = hooks;
+        _log = log;
+
+        hooks.Patch(typeof(ExposurePatch), typeof(ExploreManager), nameof(ExploreManager.Update), prefix: nameof(BeforeUpdate), postfix: nameof(AfterUpdate),
+            done: "hooked ExploreManager.Update", consequence: "time and running exposure keep the game's rate");
+
+        hooks.Patch(typeof(ExposurePatch), typeof(ExploreManager), nameof(ExploreManager.AddExposure), prefix: nameof(BeforeAdd), postfix: nameof(AfterAdd),
+            done: "hooked ExploreManager.AddExposure", consequence: "searching and looting keep the game's exposure");
+
+        SourcePatch.Apply(hooks);
+        TripPatch.Apply(hooks);
+
         ExposureFeed.PreviewOneOff = Preview;
     }
 
@@ -120,7 +129,7 @@ internal static class ExposurePatch
         }
         catch (Exception ex)
         {
-            ChangeFailure.Report(ex);
+            _hooks?.Fail(ChangeFailure, ex);
         }
     }
 
@@ -139,7 +148,7 @@ internal static class ExposurePatch
         }
         catch (Exception ex)
         {
-            FeedFailure.Report(ex);
+            _hooks?.Fail(FeedFailure, ex);
         }
     }
 
@@ -152,7 +161,7 @@ internal static class ExposurePatch
         }
         catch (Exception ex)
         {
-            ChangeFailure.Report(ex);
+            _hooks?.Fail(ChangeFailure, ex);
         }
     }
 
@@ -168,7 +177,7 @@ internal static class ExposurePatch
         }
         catch (Exception ex)
         {
-            FeedFailure.Report(ex);
+            _hooks?.Fail(FeedFailure, ex);
         }
     }
 
@@ -184,7 +193,7 @@ internal static class ExposurePatch
 
         _place = place;
         _danger = _settings.Danger.Multiplier(place.Day, place.MapId);
-        Hooks.Log($"expedition at location {place.MapId} on day {place.Day?.ToString() ?? "unknown"}, danger x{_danger:0.##}");
+        _log($"expedition at location {place.MapId} on day {place.Day?.ToString() ?? "unknown"}, danger x{_danger:0.##}");
         Notify(ExposureFeed.RaiseTripStarted);
     }
 
@@ -193,13 +202,13 @@ internal static class ExposurePatch
     {
         try
         {
-            var clock = BaseSingleton<BattleLogicWorld>.IsInstanceCreated ? BaseSingleton<BattleLogicWorld>.Instance?._GameTimeManager : null;
+            var clock = GameSingleton.Existing<BattleLogicWorld>()?._GameTimeManager;
 
             return clock == null ? null : clock.GetDay() + 1;
         }
         catch (Exception ex)
         {
-            DayFailure.Report(ex);
+            _hooks?.Fail(DayFailure, ex);
 
             return null;
         }
@@ -226,7 +235,7 @@ internal static class ExposurePatch
         }
         catch (Exception ex)
         {
-            FeedFailure.Report(ex);
+            _hooks?.Fail(FeedFailure, ex);
         }
     }
 
@@ -246,7 +255,7 @@ internal static class ExposurePatch
         }
         catch (Exception ex)
         {
-            FeedFailure.Report(ex);
+            _hooks?.Fail(FeedFailure, ex);
         }
     }
 
@@ -258,7 +267,7 @@ internal static class ExposurePatch
         }
         catch (Exception ex)
         {
-            FeedFailure.Report(ex);
+            _hooks?.Fail(FeedFailure, ex);
         }
     }
 
@@ -270,7 +279,7 @@ internal static class ExposurePatch
         }
         catch (Exception ex)
         {
-            FeedFailure.Report(ex);
+            _hooks?.Fail(FeedFailure, ex);
         }
     }
 }

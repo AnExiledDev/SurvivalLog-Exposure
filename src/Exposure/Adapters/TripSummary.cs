@@ -1,9 +1,9 @@
 using System;
 using BepInEx.Unity.IL2CPP;
+using ExiledToolkit.Game;
 using Exposure.Core;
 using GameCore.HotUpdate;
 using GameCore.HotUpdate.Battle.Logic;
-using HarmonyLib;
 
 namespace Exposure.Adapters;
 
@@ -24,13 +24,13 @@ internal static class TripSummary
     private static Action<string> _log = _ => { };
     private static bool _hasReportedFailure;
 
-    public static void Start(BasePlugin plugin, Harmony harmony, Action<string> log)
+    public static void Start(BasePlugin plugin, PatchKit hooks, Action<string> log)
     {
         _log = log;
         ExposureFeed.TripStarted += OnTripStarted;
         ExposureFeed.Gained += Tally.Add;
         ExposureFeed.TripEnded += OnTripEnded;
-        TripSummaryLoot.Apply(harmony, loot => _loot = loot, log);
+        TripSummaryLoot.Apply(hooks, loot => _loot = loot);
         plugin.AddComponent<TripSummaryTicker>();
     }
 
@@ -105,9 +105,7 @@ internal static class TripSummary
     /// <summary>Home is up once the game has made a world that is not an expedition's and started its clock.</summary>
     private static bool IsHomeReady()
     {
-        if (!BaseSingleton<BattleLogicWorld>.IsInstanceCreated) return false;
-
-        var world = BaseSingleton<BattleLogicWorld>.Instance;
+        var world = GameSingleton.Existing<BattleLogicWorld>();
 
         return world != null && world.GameModeKey != GameMode.Explore && world._GameTimeManager?.IsGameStart == true;
     }

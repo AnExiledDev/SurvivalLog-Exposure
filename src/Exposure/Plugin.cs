@@ -2,6 +2,8 @@ using System.Linq;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Unity.IL2CPP;
+using ExiledToolkit;
+using ExiledToolkit.Game;
 using Exposure.Adapters;
 using Exposure.Core;
 using HarmonyLib;
@@ -9,14 +11,18 @@ using HarmonyLib;
 namespace Exposure;
 
 [BepInPlugin(Guid, "Exposure", Version)]
-[BepInDependency(OptionalLive.ToolkitGuid, OptionalLive.ToolkitVersion)]
+[BepInDependency(ToolkitGuid, ToolkitVersion)]
 public sealed class Plugin : BasePlugin
 {
     private const string Guid = "com.dev.survivallog.exposure";
-    private const string Version = "0.4.0";
+    private const string Version = "0.4.1";
 
-    // With Exiled's Toolkit 0.17.0 or newer, a setting with this tag can be set per world (Customizable Difficulty
-    // picks it for a new world). Every tagged setting must be watched below, or the Toolkit leaves it out.
+    /// <summary>Exiled's Toolkit: its shared helpers, toasts and live settings all come from it.</summary>
+    private const string ToolkitGuid = "com.dev.survivallog.exiledtoolkit";
+    private const string ToolkitVersion = ">=0.19.0";
+
+    // A setting with this tag can be set per world (Customizable Difficulty picks it for a new world). Every tagged
+    // setting must be watched below, or the Toolkit leaves it out.
     private const string WorldRule = "ModManager.WorldRule";
 
     private const string Range = "From 1 to 100, or from 0.25 when AllowFasterThanGame is on.";
@@ -71,9 +77,12 @@ public sealed class Plugin : BasePlugin
 
         Log.LogInfo($"Exposure {Version} started");
         MeterPage.Start(Config, Write);
-        TripSummaryAndWarnings.Start(this, new Harmony(Guid), Write);
-        ExposurePatch.Apply(new Harmony(Guid), Write);
-        OptionalLive.Watch(() =>
+
+        var hooks = new PatchKit(new Harmony(Guid), Write);
+
+        TripSummaryAndWarnings.Start(this, hooks, Write);
+        ExposurePatch.Apply(hooks, Write);
+        LiveSettings.Watch(() =>
         {
             var resolved = ExposurePresets.Resolve(new ExposureChoices(
                 preset.Value,

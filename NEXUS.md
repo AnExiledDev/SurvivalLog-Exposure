@@ -41,7 +41,7 @@ Text the mod shows in game is in English, or in Simplified Chinese when the game
 [list]
 [*]Survival Log 1.1.20151. A game update can break it until the mod is updated.[/*]
 [*][url=https://www.nexusmods.com/survivallog/mods/12]BepInEx for Survival Log[/url]. Install it first.[/*]
-[*][url=https://www.nexusmods.com/survivallog/mods/61]Exiled's Toolkit[/url] 0.11.0 or newer. Exposure does not load without it. It shows the warning and trip summary notices as toasts and applies settings changed on the Mod Manager's Mods screen without a restart.[/*]
+[*][url=https://www.nexusmods.com/survivallog/mods/61]Exiled's Toolkit[/url] 0.19.0 or newer. Exposure does not load without it. It shows the warning and trip summary notices as toasts and applies settings changed on the Mod Manager's Mods screen without a restart.[/*]
 [*]Optional: [url=https://www.nexusmods.com/survivallog/mods/47]Time Control[/url], with TimeControlOnExpeditions on, to pause the game at a warning.[/*]
 [/list]
 
@@ -58,7 +58,7 @@ Text the mod shows in game is in English, or in Simplified Chinese when the game
 Delete [font=Courier New]Exposure.dll[/font] from the [font=Courier New]BepInEx\plugins[/font] folder.
 
 [size=5]Configuration[/size]
-To change settings, edit [font=Courier New]BepInEx\config\com.dev.survivallog.exposure.cfg[/font] while the game is closed, or do it in game on the Mod Manager's Mods screen, where changes take effect at once (see [url=https://github.com/AnExiledDev/SurvivalLog-Exposure/blob/main/CONFIG.md]CONFIG.md[/url] for every setting). With Exiled's Toolkit 0.17.0 or newer, each world can keep its own Exposure and Danger settings (all but [font=Courier New]Locations[/font]): pick them for a new world in Customizable Difficulty, or, while you play, change them for that world alone on the Mods screen.
+To change settings, edit [font=Courier New]BepInEx\config\com.dev.survivallog.exposure.cfg[/font] while the game is closed, or do it in game on the Mod Manager's Mods screen, where changes take effect at once (see [url=https://github.com/AnExiledDev/SurvivalLog-Exposure/blob/main/CONFIG.md]CONFIG.md[/url] for every setting). Each world can keep its own Exposure and Danger settings (all but [font=Courier New]Locations[/font]): pick them for a new world in Customizable Difficulty, or, while you play, change them for that world alone on the Mods screen.
 [list]
 [*][font=Courier New]TimeSlowdown[/font] (default 2): how many times slower exposure from time rises.[/*]
 [*][font=Courier New]RunningAddsExposure[/font] (default false): set to true to let running add exposure as in the game.[/*]
@@ -118,7 +118,7 @@ Exposure 只改变暴露值上涨的快慢，不会往存档里添加任何内�
 [list]
 [*]Survival Log 1.1.20151。游戏更新后模组可能暂时失效，直到模组更新为止。[/*]
 [*][url=https://www.nexusmods.com/survivallog/mods/12]BepInEx for Survival Log[/url]，请先安装。[/*]
-[*][url=https://www.nexusmods.com/survivallog/mods/61]Exiled's Toolkit[/url] 0.11.0 或更新版本。没有它本模组不会加载。它把提醒和探索总结的通知以弹窗显示，并让在 Mod Manager 的「模组」界面改动的设置无需重启游戏即可生效。[/*]
+[*][url=https://www.nexusmods.com/survivallog/mods/61]Exiled's Toolkit[/url] 0.19.0 或更新版本。没有它本模组不会加载。它把提醒和探索总结的通知以弹窗显示，并让在 Mod Manager 的「模组」界面改动的设置无需重启游戏即可生效。[/*]
 [*]可选：[url=https://www.nexusmods.com/survivallog/mods/47]Time Control[/url]，开启 TimeControlOnExpeditions 后可以在提醒时暂停游戏。[/*]
 [/list]
 
@@ -135,7 +135,7 @@ Exposure 只改变暴露值上涨的快慢，不会往存档里添加任何内�
 从 [font=Courier New]BepInEx\plugins[/font] 文件夹中删除 [font=Courier New]Exposure.dll[/font]。
 
 [size=5]配置[/size]
-如需修改设置，可以在游戏内 Mod Manager 的「模组」界面修改（改动立即生效），也可以在游戏关闭时编辑 [font=Courier New]BepInEx\config\com.dev.survivallog.exposure.cfg[/font]。配置文件中每项设置都有中文说明，完整说明见 [url=https://github.com/AnExiledDev/SurvivalLog-Exposure/blob/main/CONFIG.md]CONFIG.md[/url]（英文）。装了 Exiled's Toolkit 0.17.0 或更新版本时，每个存档都可以有自己的 Exposure 和 Danger 设置（[font=Courier New]Locations[/font] 除外）：新存档可以在「自定义难度」里选，游戏中也可以在「模组」界面只为当前存档修改。
+如需修改设置，可以在游戏内 Mod Manager 的「模组」界面修改（改动立即生效），也可以在游戏关闭时编辑 [font=Courier New]BepInEx\config\com.dev.survivallog.exposure.cfg[/font]。配置文件中每项设置都有中文说明，完整说明见 [url=https://github.com/AnExiledDev/SurvivalLog-Exposure/blob/main/CONFIG.md]CONFIG.md[/url]（英文）。每个存档都可以有自己的 Exposure 和 Danger 设置（[font=Courier New]Locations[/font] 除外）：新存档可以在「自定义难度」里选，游戏中也可以在「模组」界面只为当前存档修改。
 [list]
 [*][font=Courier New]TimeSlowdown[/font]（默认 2）：随时间上涨的暴露值慢几倍。[/*]
 [*][font=Courier New]RunningAddsExposure[/font]（默认 false）：设为 true 后，跑步会和游戏原本一样增加暴露值。[/*]

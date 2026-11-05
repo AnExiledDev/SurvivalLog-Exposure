@@ -2,15 +2,19 @@
 // window.__slexposure.set(), the bar's numbers, the time-to-full line and each furniture button's exposure cost by its
 // function id. The expedition meter (CoreUI1) gets the numbers in place of its percent and the line under the bar;
 // the furniture menu (SelectMenu) gets "+N" on each button that adds exposure. A part sent as null is left exactly as
-// the game draws it.
+// the game draws it. Exiled's Toolkit's page API hands this script each of those pages and keeps its styles.
 (function () {
   if (window.__slexposure) return;
 
-  var POLL_MS = 500;
+  var METER_PAGE = /\/CoreUI1\//;
+  var MENU_PAGE = /\/SelectMenu\//;
   var MARK = '__slexposurePatched';
   var state = { numbers: null, full: null, costs: null };
   var lastJson = '';
   var menus = [];
+  var etk = null;
+  var meterWatch = null;
+  var menuWatch = null;
 
   var METER_CSS =
     'html.slexp-numbers .exp-info-overlay .exp-value:not(.slexp-value){display:none}' +
@@ -20,16 +24,6 @@
   var COST_CSS =
     '.slexp-cost{margin-left:6px;flex-shrink:0;font-family:Consolas,monospace;font-size:12px;font-weight:bold;' +
     'color:#FFC107;white-space:nowrap}';
-
-  function addStyle(doc, id, css) {
-    if (doc.getElementById(id) || !doc.head) return;
-
-    var style = doc.createElement('style');
-
-    style.id = id;
-    style.textContent = css;
-    doc.head.appendChild(style);
-  }
 
   // A child this script owns: made when there is text for it, kept up to date, and removed when there is none.
   function ownChild(doc, parent, className, tag, text) {
@@ -53,12 +47,11 @@
   // ===== Expedition meter =====
 
   // Vue draws the meter and drops the whole panel when the expedition ends, taking these with it, so they are put
-  // back on every poll. The game's own percent is only hidden by a class, never changed.
-  function fixMeter(w) {
-    var doc = w.document;
+  // back on every check. The game's own percent is only hidden by a class, never changed.
+  function fixMeter(doc) {
     var panel = doc.querySelector('.exploration-mode-panel');
 
-    addStyle(doc, 'slexp-meter-style', METER_CSS);
+    etk.addStyle(doc, 'slexp-meter-style', METER_CSS);
     doc.documentElement.classList.toggle('slexp-numbers', !!state.numbers);
 
     if (!panel) return;
@@ -78,7 +71,8 @@
     var entry = { win: w, list: [] };
 
     w[MARK] = true;
-    addStyle(w.document, 'slexp-cost-style', COST_CSS);
+    etk.addStyle(w.document, 'slexp-cost-style', COST_CSS);
+    forgetClosedMenus();
     menus.push(entry);
 
     w.addEventListener('message', function (event) {
@@ -134,41 +128,7 @@
 
   // ===== Pages =====
 
-  function pageWindows() {
-    var frames = document.getElementsByTagName('iframe');
-    var found = [];
-
-    for (var i = 0; i < frames.length; i++) {
-      try {
-        var w = frames[i].contentWindow;
-
-        if (w && w.document) found.push(w);
-      } catch (e) {}
-    }
-
-    return found;
-  }
-
-  function isPage(w, path) {
-    try {
-      return String(w.location.pathname).indexOf(path) >= 0;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  function poll() {
-    var windows = pageWindows();
-
-    for (var i = 0; i < windows.length; i++) {
-      var w = windows[i];
-
-      try {
-        if (isPage(w, '/CoreUI1/')) fixMeter(w);
-        else if (isPage(w, '/SelectMenu/') && !w[MARK]) watchMenu(w);
-      } catch (e) {}
-    }
-
+  function forgetClosedMenus() {
     menus = menus.filter(function (entry) {
       try {
         return !entry.win.closed && !!entry.win.document;
@@ -185,7 +145,11 @@
 
     lastJson = json;
     state = next || { numbers: null, full: null, costs: null };
-    poll();
+
+    if (meterWatch) meterWatch.refresh();
+    if (menuWatch) menuWatch.refresh();
+
+    forgetClosedMenus();
 
     for (var i = 0; i < menus.length; i++) {
       try {
@@ -194,11 +158,16 @@
     }
   }
 
-  setInterval(function () {
-    try {
-      poll();
-    } catch (e) {}
-  }, POLL_MS);
-
   window.__slexposure = { set: set };
+
+  // The meter is put back at every check, since Vue drops it with the panel; a menu is watched once per page it loads.
+  (window.ExiledToolkitReady = window.ExiledToolkitReady || []).push(function (api) {
+    etk = api;
+    meterWatch = etk.watchPages(METER_PAGE, fixMeter, { everyCheck: true });
+    menuWatch = etk.watchPages(MENU_PAGE, function (doc) {
+      var w = doc.defaultView;
+
+      if (w && !w[MARK]) watchMenu(w);
+    });
+  });
 })();

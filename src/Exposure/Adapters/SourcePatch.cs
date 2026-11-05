@@ -1,7 +1,7 @@
 using System;
+using ExiledToolkit.Game;
 using Exposure.Core;
 using GameCore.HotUpdate.Battle.Logic;
-using HarmonyLib;
 using Il2CppInterop.Runtime;
 
 namespace Exposure.Adapters;
@@ -15,7 +15,9 @@ namespace Exposure.Adapters;
 /// </summary>
 internal static class SourcePatch
 {
-    private static readonly FailureLog Failure = new("exposure source could not be read, it counts as other");
+    private const string Failure = "reading an exposure source, it counts as other";
+
+    private static PatchKit? _hooks;
     private static ExposureSource? _source;
     private static int? _furnitureActionId;
 
@@ -28,13 +30,20 @@ internal static class SourcePatch
     /// <summary>What is adding exposure now; anything the hooks did not see counts as other.</summary>
     public static ExposureSource Current => _source ?? ExposureSource.Other;
 
-    public static void Apply(Harmony harmony)
+    public static void Apply(PatchKit hooks)
     {
         const string consequence = "its exposure uses the loot setting";
 
-        Hooks.Patch(harmony, typeof(AE_AddExploreByConfig), nameof(AE_AddExploreByConfig.Run), typeof(SourcePatch), nameof(BeforeEffect), null, consequence, finalizer: nameof(Restore));
-        Hooks.Patch(harmony, typeof(ActionManager), "TryExecuteFurnitureFuncReward", typeof(SourcePatch), nameof(BeforeFurnitureReward), null, consequence, finalizer: nameof(Restore));
-        Hooks.Patch(harmony, typeof(RewardSetManager), nameof(RewardSetManager.ExecuteRewardSet), typeof(SourcePatch), nameof(BeforeRewardSet), null, consequence, finalizer: nameof(Restore));
+        _hooks = hooks;
+
+        hooks.Patch(typeof(SourcePatch), typeof(AE_AddExploreByConfig), nameof(AE_AddExploreByConfig.Run), prefix: nameof(BeforeEffect), finalizer: nameof(Restore),
+            done: "hooked AE_AddExploreByConfig.Run", consequence: consequence);
+
+        hooks.Patch(typeof(SourcePatch), typeof(ActionManager), "TryExecuteFurnitureFuncReward", prefix: nameof(BeforeFurnitureReward), finalizer: nameof(Restore),
+            done: "hooked ActionManager.TryExecuteFurnitureFuncReward", consequence: consequence);
+
+        hooks.Patch(typeof(SourcePatch), typeof(RewardSetManager), nameof(RewardSetManager.ExecuteRewardSet), prefix: nameof(BeforeRewardSet), finalizer: nameof(Restore),
+            done: "hooked RewardSetManager.ExecuteRewardSet", consequence: consequence);
     }
 
     private static void BeforeEffect(EffectBtArgs args, out Saved __state)
@@ -48,7 +57,7 @@ internal static class SourcePatch
         catch (Exception ex)
         {
             _source = ExposureSource.Other;
-            Failure.Report(ex);
+            _hooks?.Fail(Failure, ex);
         }
     }
 
@@ -63,7 +72,7 @@ internal static class SourcePatch
         catch (Exception ex)
         {
             _furnitureActionId = null;
-            Failure.Report(ex);
+            _hooks?.Fail(Failure, ex);
         }
     }
 

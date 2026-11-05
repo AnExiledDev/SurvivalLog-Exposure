@@ -1,7 +1,7 @@
 using System;
+using ExiledToolkit.Game;
 using GameCore.HotUpdate;
 using GameCore.HotUpdate.Battle.Logic;
-using HarmonyLib;
 
 namespace Exposure.Adapters;
 
@@ -14,13 +14,22 @@ namespace Exposure.Adapters;
 /// </summary>
 internal static class TripPatch
 {
-    private static readonly FailureLog Failure = new("expedition start or end could not be read");
+    private const string Failure = "reading an expedition's start or end";
 
-    public static void Apply(Harmony harmony)
+    private static PatchKit? _hooks;
+
+    public static void Apply(PatchKit hooks)
     {
-        Hooks.Patch(harmony, typeof(ExploreManager), nameof(ExploreManager.Initialize), typeof(TripPatch), null, nameof(AfterInitialize), "a new expedition is only noticed on its first update", new[] { typeof(GameSaveData), typeof(GameMode) });
-        Hooks.Patch(harmony, typeof(ExploreManager), "OnExploreEnd", typeof(TripPatch), nameof(BeforeExploreEnd), null, "the end of an expedition is not reported");
-        Hooks.Patch(harmony, typeof(BattleLogicWorld), "OnDestroy", typeof(TripPatch), nameof(BeforeWorldDestroy), null, "an expedition left by quitting is not reported as ended", Type.EmptyTypes);
+        _hooks = hooks;
+
+        hooks.Patch(typeof(TripPatch), typeof(ExploreManager), nameof(ExploreManager.Initialize), new[] { typeof(GameSaveData), typeof(GameMode) }, postfix: nameof(AfterInitialize),
+            done: "hooked ExploreManager.Initialize", consequence: "a new expedition is only noticed on its first update");
+
+        hooks.Patch(typeof(TripPatch), typeof(ExploreManager), "OnExploreEnd", prefix: nameof(BeforeExploreEnd),
+            done: "hooked ExploreManager.OnExploreEnd", consequence: "the end of an expedition is not reported");
+
+        hooks.Patch(typeof(TripPatch), typeof(BattleLogicWorld), "OnDestroy", Type.EmptyTypes, prefix: nameof(BeforeWorldDestroy),
+            done: "hooked BattleLogicWorld.OnDestroy", consequence: "an expedition left by quitting is not reported as ended");
     }
 
     private static void AfterInitialize(ExploreManager __instance)
@@ -31,7 +40,7 @@ internal static class TripPatch
         }
         catch (Exception ex)
         {
-            Failure.Report(ex);
+            _hooks?.Fail(Failure, ex);
         }
     }
 
@@ -44,7 +53,7 @@ internal static class TripPatch
         }
         catch (Exception ex)
         {
-            Failure.Report(ex);
+            _hooks?.Fail(Failure, ex);
         }
     }
 
@@ -56,7 +65,7 @@ internal static class TripPatch
         }
         catch (Exception ex)
         {
-            Failure.Report(ex);
+            _hooks?.Fail(Failure, ex);
         }
     }
 }

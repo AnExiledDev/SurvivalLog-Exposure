@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
+using ExiledToolkit.Game;
 using Exposure.Core;
 using GameCore.HotUpdate;
 using GameCore.HotUpdate.Battle.Logic;
-using HarmonyLib;
 
 namespace Exposure.Adapters;
 
@@ -18,23 +18,15 @@ internal static class TripSummaryLoot
     private const string Method = nameof(ExploreManager.CalculateAndSaveReward);
 
     private static Action<TripLoot?> _capture = _ => { };
-    private static Action<string> _log = _ => { };
-    private static bool _hasReportedFailure;
+    private static PatchKit? _hooks;
 
-    public static void Apply(Harmony harmony, Action<TripLoot?> capture, Action<string> log)
+    public static void Apply(PatchKit hooks, Action<TripLoot?> capture)
     {
         _capture = capture;
-        _log = log;
+        _hooks = hooks;
 
-        try
-        {
-            harmony.Patch(AccessTools.Method(typeof(ExploreManager), Method), postfix: new HarmonyMethod(typeof(TripSummaryLoot), nameof(AfterRewardSaved)));
-            log($"hooked ExploreManager.{Method}");
-        }
-        catch (Exception ex)
-        {
-            log($"could not hook ExploreManager.{Method}, the trip summary leaves out what was brought home: {ex.Message}");
-        }
+        hooks.Patch(typeof(TripSummaryLoot), typeof(ExploreManager), Method, postfix: nameof(AfterRewardSaved),
+            done: $"hooked ExploreManager.{Method}", consequence: "the trip summary leaves out what was brought home");
     }
 
     private static void AfterRewardSaved()
@@ -46,18 +38,14 @@ internal static class TripSummaryLoot
         catch (Exception ex)
         {
             _capture(null);
-
-            if (_hasReportedFailure) return;
-
-            _hasReportedFailure = true;
-            _log($"could not read what the trip brought home, the trip summary leaves it out (logged once): {ex.Message}");
+            _hooks?.Fail("reading what the trip brought home, the trip summary leaves it out", ex);
         }
     }
 
     /// <summary>Null when the game saved no reward, so the summary says nothing rather than "nothing new".</summary>
     private static TripLoot? Read()
     {
-        var save = BaseSingleton<GameSaveManager>.IsInstanceCreated ? BaseSingleton<GameSaveManager>.Instance?._gameSave_k__BackingField : null;
+        var save = GameSingleton.Existing<GameSaveManager>()?._gameSave_k__BackingField;
         var reward = save?._ExploreReward_k__BackingField;
 
         if (reward == null) return null;
@@ -66,7 +54,7 @@ internal static class TripSummaryLoot
 
         if (items == null) return TripLoot.Nothing;
 
-        var config = BaseSingleton<ConfigManager>.IsInstanceCreated ? BaseSingleton<ConfigManager>.Instance : null;
+        var config = GameSingleton.Existing<ConfigManager>();
         var entries = new List<(int Count, int Price)>(items.Count);
 
         for (var i = 0; i < items.Count; i++)

@@ -1,5 +1,6 @@
 using System;
 using BepInEx.Configuration;
+using ExiledToolkit;
 using Exposure.Core;
 
 namespace Exposure.Adapters;
@@ -25,14 +26,14 @@ internal static class WarningOptions
             "Once you are home from an expedition, show a notice with the exposure the trip added from time, running, searching and looting, events and anything else, and how many items you brought home and what they are worth. The summary is always written to the log.\n" +
             "探索结束回到家后显示一条通知，列出这次探索中时间、跑步、翻找和拾取、事件及其他来源增加的暴露值，以及带回家的物品数量和价值。总结总会写入日志。");
 
-        OptionalLive.Watch(() =>
+        LiveSettings.Watch(() =>
         {
             var levels = new WarningLevels(WarningRules.ParseThresholds(thresholds.Value), WarningRules.ClampPauseAt(pauseAt.Value));
 
             useWarnings(new WarningSettings(levels, isToastOn.Value, isSoundOn.Value));
             log($"warnings at {Describe(levels)}, notice {OnOff(isToastOn.Value)}, sound {OnOff(isSoundOn.Value)}, pause {(levels.PauseAt > 0 ? $"at {levels.PauseAt}%" : "off")}");
         }, thresholds, isToastOn, isSoundOn, pauseAt);
-        OptionalLive.Watch(isSummaryOn, isOn =>
+        LiveSettings.Watch(isSummaryOn, isOn =>
         {
             useSummary(isOn);
             log($"trip summary notice {OnOff(isOn)}");

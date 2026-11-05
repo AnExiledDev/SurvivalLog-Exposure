@@ -1,6 +1,6 @@
 using BepInEx.Unity.IL2CPP;
+using ExiledToolkit.Game;
 using Exposure.Core;
-using GameCore.HotUpdate;
 using GameCore.HotUpdate.Battle.Logic;
 
 namespace Exposure.Adapters;
@@ -39,8 +39,7 @@ internal static class WarningsGame
     }
 
     /// <summary>The live world's time manager, read only once the game has made the world.</summary>
-    private static GameTimeManager? LiveTime() =>
-        BaseSingleton<BattleLogicWorld>.IsInstanceCreated ? BaseSingleton<BattleLogicWorld>.Instance?._GameTimeManager : null;
+    private static GameTimeManager? LiveTime() => GameSingleton.Existing<BattleLogicWorld>()?._GameTimeManager;
 
     /// <summary>Time Control's own setting; a version without it does not control expeditions.</summary>
     private static bool IsTimeControlOnExpeditions() =>
