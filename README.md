@@ -58,7 +58,7 @@ None. The mod has no hotkeys or buttons; it works on its own once installed.
 
 ## Configuration
 
-Settings live in `BepInEx\config\com.dev.survivallog.exposure.cfg`, created the first time the game starts with the mod. Change them in game on the Mod Manager's Mods screen, where they take effect at once, or edit the file while the game is closed. See [CONFIG.md](CONFIG.md) for every setting.
+Settings live in `BepInEx\config\com.dev.survivallog.exposure.cfg`, created the first time the game starts with the mod. Change them in game on the Mod Manager's Mods screen, where they take effect at once, or edit the file while the game is closed. See [CONFIG.md](CONFIG.md) for every setting. With Exiled's Toolkit 0.17.0 or newer, each world can keep its own Exposure and Danger settings (all but `Locations`): pick them for a new world in Customizable Difficulty, or, while you play, change them for that world alone on the Mods screen.
 
 ## Troubleshooting
 

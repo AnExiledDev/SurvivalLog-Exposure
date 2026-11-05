@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0
+
+- Each world can keep its own exposure settings: `Preset` and every setting in Exposure and Danger except `Locations`. With Exiled's Toolkit 0.17.0 or newer, pick them for a new world in Customizable Difficulty, or change them for the world you are playing on the Mod Manager's Mods screen. `Locations`, the meter, warnings and trip summary stay the same for every world.
+- Made for Survival Log 1.1.20151.
+
 ## 0.3.1
 
 - **Warning:** needs Exiled's Toolkit 0.11.0 or newer. Update the Toolkit first.
