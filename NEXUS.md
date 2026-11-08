@@ -43,6 +43,7 @@ Text the mod shows in game is in English, or in Simplified Chinese when the game
 [*][url=https://www.nexusmods.com/survivallog/mods/12]BepInEx for Survival Log[/url]. Install it first.[/*]
 [*][url=https://www.nexusmods.com/survivallog/mods/61]Exiled's Toolkit[/url] 0.19.0 or newer. Exposure does not load without it. It shows the warning and trip summary notices as toasts and applies settings changed on the Mod Manager's Mods screen without a restart.[/*]
 [*]Optional: [url=https://www.nexusmods.com/survivallog/mods/47]Time Control[/url], with TimeControlOnExpeditions on, to pause the game at a warning.[/*]
+[*]Optional: [url=https://www.nexusmods.com/survivallog/mods/73]Mod Manager[/url]. With it, you can change every setting in game on its Mods screen and see what each one does, without opening the config file.[/*]
 [/list]
 
 [size=5]Installation[/size]
@@ -120,6 +121,7 @@ Exposure 只改变暴露值上涨的快慢，不会往存档里添加任何内�
 [*][url=https://www.nexusmods.com/survivallog/mods/12]BepInEx for Survival Log[/url]，请先安装。[/*]
 [*][url=https://www.nexusmods.com/survivallog/mods/61]Exiled's Toolkit[/url] 0.19.0 或更新版本。没有它本模组不会加载。它把提醒和探索总结的通知以弹窗显示，并让在 Mod Manager 的「模组」界面改动的设置无需重启游戏即可生效。[/*]
 [*]可选：[url=https://www.nexusmods.com/survivallog/mods/47]Time Control[/url]，开启 TimeControlOnExpeditions 后可以在提醒时暂停游戏。[/*]
+[*]可选：[url=https://www.nexusmods.com/survivallog/mods/73]Mod Manager[/url]。装了它，可以在游戏里它的「模组」界面修改每项设置，并看到每项的说明，不用打开配置文件。[/*]
 [/list]
 
 [size=5]安装[/size]
