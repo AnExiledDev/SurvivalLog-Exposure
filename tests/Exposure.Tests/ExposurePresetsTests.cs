@@ -7,10 +7,13 @@ public class ExposurePresetsTests
 {
     /// <summary>The settings exactly as a fresh config writes them.</summary>
     private static readonly ExposureChoices Defaults = new(
-        "Custom", 2, false, 2, 0, 0, 0, 0, false, 1, 1, 30, "");
+        "Custom", 1, true, 1, 0, 0, 0, 0, false, 1, 1, 30, "");
+
+    /// <summary>The settings a Relaxed player would set by hand: half as fast, running adds none.</summary>
+    private static readonly ExposureChoices Halved = Defaults with { TimeSlowdown = 2, IsRunningExposed = false, LootSlowdown = 2 };
 
     /// <summary>A Custom set with every per-source and danger setting moved away from its default.</summary>
-    private static readonly ExposureChoices Tuned = Defaults with
+    private static readonly ExposureChoices Tuned = Halved with
     {
         SearchSlowdown = 4,
         PickupSlowdown = 5,
@@ -23,16 +26,25 @@ public class ExposurePresetsTests
     };
 
     [Fact]
-    public void The_default_settings_slow_exposure_as_before_on_every_day_and_location()
+    public void The_default_settings_keep_the_games_own_exposure_on_every_day_and_location()
     {
+        // Installing the mod must change no balance until the player picks a slowdown.
         var settings = ExposurePresets.Resolve(Defaults).Settings;
 
-        Assert.Equal(1f, settings.TimeRate(2f, settings.Danger.Multiplier(1, 1000)));
-        Assert.Equal(1f, settings.TimeRate(2f, settings.Danger.Multiplier(60, 1005)));
-        Assert.Equal(0f, settings.RunRate(10f, settings.Danger.Multiplier(60, 1005)));
+        Assert.Equal(2f, settings.TimeRate(2f, settings.Danger.Multiplier(1, 1000)));
+        Assert.Equal(2f, settings.TimeRate(2f, settings.Danger.Multiplier(60, 1005)));
+        Assert.Equal(10f, settings.RunRate(10f, settings.Danger.Multiplier(60, 1005)));
 
         foreach (var source in new[] { ExposureSource.Search, ExposureSource.Loot, ExposureSource.Door, ExposureSource.Event, ExposureSource.Other })
-            Assert.Equal(5, settings.OneOff(source, 10, 0, settings.Danger.Multiplier(60, 1005)).Value);
+            Assert.Equal(10, settings.OneOff(source, 10, 0, settings.Danger.Multiplier(60, 1005)).Value);
+    }
+
+    [Fact]
+    public void The_config_defaults_are_the_games_own_exposure()
+    {
+        Assert.Equal(1, ExposurePresets.GameExposure.TimeSlowdown);
+        Assert.True(ExposurePresets.GameExposure.IsRunningExposed);
+        Assert.Equal(1, ExposurePresets.GameExposure.LootSlowdown);
     }
 
     [Fact]
@@ -99,10 +111,10 @@ public class ExposurePresetsTests
     }
 
     [Fact]
-    public void Relaxed_matches_the_default_custom_settings()
+    public void Relaxed_matches_halved_custom_settings()
     {
         var relaxed = ExposurePresets.Resolve(Tuned with { Preset = "Relaxed" }).Settings;
-        var defaults = ExposurePresets.Resolve(Defaults).Settings;
+        var defaults = ExposurePresets.Resolve(Halved).Settings;
 
         Assert.Equal(defaults.TimeRate(2f, 1), relaxed.TimeRate(2f, relaxed.Danger.Multiplier(40, 1005)));
         Assert.Equal(defaults.RunRate(10f, 1), relaxed.RunRate(10f, 1));

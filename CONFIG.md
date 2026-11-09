@@ -7,9 +7,9 @@ Settings live in `BepInEx\config\com.dev.survivallog.exposure.cfg`, created the 
 | Setting | Default | What it does |
 | --- | --- | --- |
 | `Preset` | `Custom` | A ready-made set of settings: `Custom`, `Vanilla`, `Relaxed`, `Tourist` or `Hardcore` (see below). Any preset other than `Custom` replaces every other setting in Exposure and Danger. |
-| `TimeSlowdown` | `2` | On an expedition, exposure from time spent out rises this many times slower. `1` is the game's rate, `2` is half as fast. |
-| `RunningAddsExposure` | `false` | When `false`, running on an expedition adds no exposure on top of time, so running costs the same as walking. When `true`, running adds exposure as in the game. |
-| `LootSlowdown` | `2` | Exposure added at once by searching, picking up, breaking in and events is divided by this, unless that kind has its own setting below. `1` is the game's amount, `2` is half. |
+| `TimeSlowdown` | `1` | On an expedition, exposure from time spent out rises this many times slower. `1` is the game's rate, `2` is half as fast. |
+| `RunningAddsExposure` | `true` | When `false`, running on an expedition adds no exposure on top of time, so running costs the same as walking. When `true`, running adds exposure as in the game. |
+| `LootSlowdown` | `1` | Exposure added at once by searching, picking up, breaking in and events is divided by this, unless that kind has its own setting below. `1` is the game's amount, `2` is half. |
 | `SearchSlowdown` | `0` | Exposure added by searching and looking over furniture is divided by this. `0` uses `LootSlowdown`. |
 | `PickupSlowdown` | `0` | Exposure added by picking up and taking out supplies is divided by this. `0` uses `LootSlowdown`. |
 | `BreakInSlowdown` | `0` | Exposure added by prying and forcing doors and locks, unlocking, tearing down and swiping cards is divided by this. `0` uses `LootSlowdown`. |
@@ -31,7 +31,7 @@ None of the settings change anything that lowers exposure; those keep the game's
 | `Tourist` | a fifth as fast | adds none | a fifth |
 | `Hardcore` | a third faster than the game | adds exposure at the game's rate | a third more than the game |
 
-`Relaxed` is the same as the default `Custom` settings. Presets ignore the Danger settings.
+The default `Custom` settings are the same as `Vanilla`. Presets ignore the Danger settings.
 
 ## Danger
 

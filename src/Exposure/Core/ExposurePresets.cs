@@ -40,6 +40,9 @@ public static class ExposurePresets
 
     public static IReadOnlyList<string> Names { get; } = All.Select(preset => preset.ToString()).ToArray();
 
+    /// <summary>The game's own exposure: the Vanilla preset, and the settings' defaults, so installing the mod changes no balance.</summary>
+    public static ExposureSettings GameExposure { get; } = new(ExposureRules.MinSlowdown, IsRunningExposed: true, ExposureRules.MinSlowdown);
+
     /// <summary>A name the mod does not know reads as <see cref="ExposurePreset.Custom"/>, so the player's own settings apply.</summary>
     public static ExposurePreset Parse(string? name)
     {
@@ -54,7 +57,7 @@ public static class ExposurePresets
         var locations = LocationList.Parse(choices.Locations);
         var settings = preset switch
         {
-            ExposurePreset.Vanilla => new ExposureSettings(1, IsRunningExposed: true, 1),
+            ExposurePreset.Vanilla => GameExposure,
             ExposurePreset.Relaxed => new ExposureSettings(2, IsRunningExposed: false, 2),
             ExposurePreset.Tourist => new ExposureSettings(5, IsRunningExposed: false, 5),
             ExposurePreset.Hardcore => new ExposureSettings(0.75, IsRunningExposed: true, 0.75) { IsFasterThanGameAllowed = true },

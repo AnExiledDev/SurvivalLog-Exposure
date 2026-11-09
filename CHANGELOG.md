@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.2
+
+- A new install now starts at the game's own exposure: `TimeSlowdown` 1, `RunningAddsExposure` true and `LootSlowdown` 1. Pick the `Relaxed` preset for the old defaults (half as fast, running adds none). Settings you already saved are kept.
+- Made for Survival Log 1.1.20719.
+
 ## 0.4.1
 
 - Now uses Exiled's Toolkit for its shared parts, so it needs Exiled's Toolkit 0.19.0 or newer.

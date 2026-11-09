@@ -15,7 +15,7 @@ namespace Exposure;
 public sealed class Plugin : BasePlugin
 {
     private const string Guid = "com.dev.survivallog.exposure";
-    private const string Version = "0.4.1";
+    private const string Version = "0.4.2";
 
     /// <summary>Exiled's Toolkit: its shared helpers, toasts and live settings all come from it.</summary>
     private const string ToolkitGuid = "com.dev.survivallog.exiledtoolkit";
@@ -38,13 +38,13 @@ public sealed class Plugin : BasePlugin
             "A ready-made set of exposure settings. Custom uses the settings below as you set them. Vanilla is the game's own exposure. Relaxed halves time and one-off exposure, and running adds none. Tourist gives a fifth of the game's exposure, and running adds none. Hardcore makes time and one-off exposure rise a third faster than in the game, and running adds exposure at the game's rate. Any preset other than Custom replaces every other setting here and in Danger.\n" +
             "预设的暴露值方案。「Custom」使用下方各项设置。「Vanilla」为游戏原本的暴露值。「Relaxed」随时间和一次性增加的暴露值减半，跑步不增加暴露值。「Tourist」暴露值只有游戏的五分之一，跑步不增加暴露值。「Hardcore」随时间和一次性增加的暴露值比游戏快三分之一，跑步按游戏原速增加暴露值。选择「Custom」以外的预设时，会替换此处和「Danger」中的所有其他设置。",
             new AcceptableValueList<string>(ExposurePresets.Names.ToArray()), WorldRule));
-        var timeSlowdown = Config.Bind("Exposure", "TimeSlowdown", 2.0, Rule(
+        var timeSlowdown = Config.Bind("Exposure", "TimeSlowdown", ExposurePresets.GameExposure.TimeSlowdown, Rule(
             $"On an expedition, exposure from time spent out rises this many times slower. 1 is the game's rate. {Range}\n" +
             $"探索时，随时间上涨的暴露值，上涨速度会除以这个数。1 为游戏原速。{RangeZh}"));
-        var isRunningExposed = Config.Bind("Exposure", "RunningAddsExposure", false, Rule(
+        var isRunningExposed = Config.Bind("Exposure", "RunningAddsExposure", ExposurePresets.GameExposure.IsRunningExposed, Rule(
             "When false, running on an expedition adds no exposure. When true, running adds exposure as in the game.\n" +
             "设为 false 时，探索时跑步不会增加暴露值。设为 true 时，跑步和游戏原本一样增加暴露值。"));
-        var lootSlowdown = Config.Bind("Exposure", "LootSlowdown", 2.0, Rule(
+        var lootSlowdown = Config.Bind("Exposure", "LootSlowdown", ExposurePresets.GameExposure.LootSlowdown, Rule(
             $"Exposure added at once by searching, picking up, breaking in and events is divided by this, unless that kind has its own setting below. 1 is the game's amount. {Range}\n" +
             $"翻找、拾取、撬开和事件一次性增加的暴露值会除以这个数，除非该类在下方有单独设置。1 为游戏原量。{RangeZh}"));
         var searchSlowdown = Config.Bind("Exposure", "SearchSlowdown", 0.0, Rule(
