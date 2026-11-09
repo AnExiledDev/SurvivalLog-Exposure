@@ -35,7 +35,7 @@ public sealed class Plugin : BasePlugin
     public override void Load()
     {
         var preset = Config.Bind("Exposure", "Preset", nameof(ExposurePreset.Custom), new ConfigDescription(
-            "A ready-made set of exposure settings. Custom uses the settings below as you set them. Vanilla is the game's own exposure. Relaxed halves time and one-off exposure, and running adds none. Tourist gives a fifth of the game's exposure, and running adds none. Hardcore makes time and one-off exposure rise a third faster than in the game, and running adds exposure at the game's rate. Any preset other than Custom replaces every other setting here and in Danger.\n" +
+            "A ready-made set of exposure settings. Custom uses the settings below as you set them. Vanilla is the game's exposure. Relaxed halves time and one-off exposure, and running adds none. Tourist gives a fifth of the game's exposure, and running adds none. Hardcore makes time and one-off exposure rise a third faster than in the game, and running adds exposure at the game's rate. Any preset other than Custom replaces every other setting here and in Danger.\n" +
             "预设的暴露值方案。「Custom」使用下方各项设置。「Vanilla」为游戏原本的暴露值。「Relaxed」随时间和一次性增加的暴露值减半，跑步不增加暴露值。「Tourist」暴露值只有游戏的五分之一，跑步不增加暴露值。「Hardcore」随时间和一次性增加的暴露值比游戏快三分之一，跑步按游戏原速增加暴露值。选择「Custom」以外的预设时，会替换此处和「Danger」中的所有其他设置。",
             new AcceptableValueList<string>(ExposurePresets.Names.ToArray()), WorldRule));
         var timeSlowdown = Config.Bind("Exposure", "TimeSlowdown", ExposurePresets.GameExposure.TimeSlowdown, Rule(

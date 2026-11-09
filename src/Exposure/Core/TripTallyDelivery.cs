@@ -17,7 +17,7 @@ public readonly record struct DeliveryStep(SummaryWait? Wait, DeliveryAction Act
 
 /// <summary>
 /// A trip summary waits for the trip home to load, and then a little more so it does not land in the middle of the
-/// game's own arrival screens. If home never comes (the player quit to the menu), it gives up rather than showing
+/// game's arrival screens. If home never comes (the player quit to the menu), it gives up rather than showing
 /// up on a later visit home.
 /// </summary>
 public static class TripTallyDelivery

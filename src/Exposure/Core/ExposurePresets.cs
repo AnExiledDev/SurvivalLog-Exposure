@@ -40,7 +40,7 @@ public static class ExposurePresets
 
     public static IReadOnlyList<string> Names { get; } = All.Select(preset => preset.ToString()).ToArray();
 
-    /// <summary>The game's own exposure: the Vanilla preset, and the settings' defaults, so installing the mod changes no balance.</summary>
+    /// <summary>The game's exposure: the Vanilla preset, and the settings' defaults, so installing the mod changes no balance.</summary>
     public static ExposureSettings GameExposure { get; } = new(ExposureRules.MinSlowdown, IsRunningExposed: true, ExposureRules.MinSlowdown);
 
     /// <summary>A name the mod does not know reads as <see cref="ExposurePreset.Custom"/>, so the player's own settings apply.</summary>

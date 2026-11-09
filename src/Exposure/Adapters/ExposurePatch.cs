@@ -8,7 +8,7 @@ namespace Exposure.Adapters;
 /// <summary>
 /// ExploreManager.Update adds TimeExposure, and MoveExposure while running, every frame; AddExposure is the one
 /// funnel for searches, loot (reward sets) and event effects. The per-frame rates are swapped for the slowed ones
-/// around the game's update and put back after, so the game's own value is never lost. A one-off add is slowed
+/// around the game's update and put back after, so the game's value is never lost. A one-off add is slowed
 /// before the game applies it, since AddExposure updates the bar and checks for the end of the trip itself.
 /// Each rise is then measured on the bar and told to the feed, after the game's work and apart from it.
 /// </summary>

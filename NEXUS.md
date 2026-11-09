@@ -1,12 +1,12 @@
 Name: Exposure
-Summary: Stay out longer on expeditions: set how much slower the Exposure bar fills over time and from searches, and whether running adds any, or pick a preset from Vanilla to Hardcore. It starts at the game's own exposure. Real numbers on the bar, the cost of each search, warnings at 50, 75 and 90%, a trip summary, and danger that grows by day or location.
+Summary: Stay out longer on expeditions: set how much slower the Exposure bar fills over time and from searches, and whether running adds any, or pick a preset from Vanilla to Hardcore. It starts at the game's exposure. Real numbers on the bar, the cost of each search, warnings at 50, 75 and 90%, a trip summary, and danger that grows by day or location.
 
 Description (BBCode):
 [center][img]https://sldb.core-directive.com/media/save/1-save-safe.png[/img][/center]
 
 Always running out of time on an expedition before you have seen half the map? Exposure slows down how fast the Exposure bar fills, so you can stay out longer and search more before the zombies find you.
 
-Out of the box it keeps the game's own exposure: pick the [b]Relaxed[/b] or [b]Tourist[/b] preset, or set the slowdowns yourself, to make the bar fill slower. The meter numbers, search costs, warnings and trip summary work from the start.
+Out of the box it keeps the game's exposure: pick the [b]Relaxed[/b] or [b]Tourist[/b] preset, or set the slowdowns yourself, to make the bar fill slower. The meter numbers, search costs, warnings and trip summary work from the start.
 
 [size=5]Main features[/size]
 [list]
@@ -15,8 +15,8 @@ Out of the box it keeps the game's own exposure: pick the [b]Relaxed[/b] or [b]T
 [*][b]Searching and looting slowed[/b]: exposure added at once by searching, looting and events is divided by the slowdown you set.[/*]
 [*][b]Nothing lost to rounding[/b]: when a halved amount leaves a fraction, it is kept and added with the next one.[/*]
 [*][b]Only rises are touched[/b]: anything that lowers exposure keeps its full effect.[/*]
-[*][b]Your own numbers[/b]: every setting can be changed in the config, from the game's own rate up to 100 times slower, with a separate setting for searching, picking up, breaking in and events.[/*]
-[*][b]Presets[/b]: Vanilla (the game's own exposure), Relaxed (half the game's exposure, running adds none), Tourist (a fifth of the game's exposure) and Hardcore (a third faster than the game).[/*]
+[*][b]Your own numbers[/b]: every setting can be changed in the config, from the game's rate up to 100 times slower, with a separate setting for searching, picking up, breaking in and events.[/*]
+[*][b]Presets[/b]: Vanilla (the game's exposure), Relaxed (half the game's exposure, running adds none), Tourist (a fifth of the game's exposure) and Hardcore (a third faster than the game).[/*]
 [*][b]Danger[/b]: make exposure rise faster as the days pass, or at chosen locations.[/*]
 [*][b]Harder than the game, if you want[/b]: with AllowFasterThanGame on, a setting below 1 makes exposure rise faster than in the game, up to four times as fast.[/*]
 [*][b]Real numbers on the bar[/b]: the Exposure bar shows its points (such as 62 / 100) and about how long until it is full at the current pace.[/*]

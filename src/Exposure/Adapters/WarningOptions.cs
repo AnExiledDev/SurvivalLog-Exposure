@@ -17,7 +17,7 @@ internal static class WarningOptions
             "Show a notice when exposure reaches a warning percent. Every warning is also written to the log.\n" +
             "暴露值达到提醒百分比时显示通知。每次提醒也都会写入日志。");
         var isSoundOn = config.Bind("Warnings", "Sound", true,
-            "Play the game's own exposure alarm, the zombie roar, when exposure reaches a warning percent.\n" +
+            "Play the game's exposure alarm, the zombie roar, when exposure reaches a warning percent.\n" +
             "暴露值达到提醒百分比时，播放游戏自带的暴露警报声（丧尸的吼叫）。");
         var pauseAt = config.Bind("Warnings", "PauseAt", 0,
             $"Pause the game when exposure first reaches this percent of the bar on an expedition. 0 is off. The game itself cannot pause or carry on during an expedition, so this needs Time Control with TimeControlOnExpeditions on; without it the game is not paused and the warning says why. From 0 to {WarningRules.MaxPercent}.\n" +

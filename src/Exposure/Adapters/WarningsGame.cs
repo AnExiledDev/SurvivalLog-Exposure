@@ -10,7 +10,7 @@ internal static class WarningsGame
 {
     public const string TimeControlGuid = "com.dev.survivallog.timecontrol";
 
-    /// <summary>Time Control's pause, the speed level the game's own pause key sends.</summary>
+    /// <summary>Time Control's pause, the speed level the game's pause key sends.</summary>
     private const int PausedLevel = 0;
 
     public static (double Exposure, double Max) ReadBar(ExploreManager manager) =>

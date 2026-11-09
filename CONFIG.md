@@ -60,7 +60,7 @@ The log shows the location id and day at the start of each expedition (`expediti
 | --- | --- | --- |
 | `Thresholds` | `50,75,90` | Warn when exposure first reaches each of these percents of the bar. Whole numbers from 1 to 100, separated by commas. Each warns once per trip. Leave empty for no warnings. |
 | `Toast` | `true` | Show a notice when a warning percent is reached. Every warning is also written to the log. |
-| `Sound` | `true` | Play the game's own exposure alarm, the zombie roar, when a warning percent is reached. |
+| `Sound` | `true` | Play the game's exposure alarm, the zombie roar, when a warning percent is reached. |
 | `PauseAt` | `0` | Pause the game when exposure first reaches this percent. `0` is off. The game cannot pause or carry on during an expedition by itself, so this needs Time Control with `TimeControlOnExpeditions` on; without it the game is not paused and the warning says why. |
 
 ## Trip

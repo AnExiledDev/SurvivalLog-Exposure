@@ -58,7 +58,7 @@ public sealed record ExposureSettings(double TimeSlowdown, bool IsRunningExposed
 
 /// <summary>
 /// On an expedition, exposure rises every frame by a time rate, plus a running rate while the character runs,
-/// and in one-off amounts when a search, loot or event adds some. Only rises are slowed; a drop is the game's own.
+/// and in one-off amounts when a search, loot or event adds some. Only rises are slowed; a drop is the game's.
 /// A slowdown is never below 1, so nothing rises faster than in the game, unless the player allows it; then the
 /// floor is <see cref="FasterFloor"/>.
 /// </summary>

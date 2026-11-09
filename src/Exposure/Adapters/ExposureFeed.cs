@@ -25,7 +25,7 @@ internal static class ExposureFeed
 
     /// <summary>
     /// The points a one-off add of the game's <c>value</c> from <c>source</c> would add now, without using up any carried
-    /// fraction. Set by the hooks; until then it is the game's own amount.
+    /// fraction. Set by the hooks; until then it is the game's amount.
     /// </summary>
     public static Func<ExposureSource, int, int> PreviewOneOff { get; set; } = (_, value) => value;
 

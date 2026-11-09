@@ -2,7 +2,7 @@
 
 Slower exposure on expeditions.
 
-Out of the box it keeps the game's own exposure, so the bar fills as fast as before until you pick the `Relaxed` or `Tourist` preset or set the slowdowns yourself. The meter numbers, search costs, warnings and trip summary work from the start.
+Out of the box it keeps the game's exposure, so the bar fills as fast as before until you pick the `Relaxed` or `Tourist` preset or set the slowdowns yourself. The meter numbers, search costs, warnings and trip summary work from the start.
 
 On an expedition the Exposure bar fills as time passes, faster while you run, and in jumps when you search, loot or hit an event. When it is full, zombies find you. Exposure slows each of those down, so you can stay out longer and look around more before you have to leave. It also shows you what the bar is doing: real numbers, the cost of each search, warnings as it fills, and a summary of each trip.
 
@@ -13,8 +13,8 @@ On an expedition the Exposure bar fills as time passes, faster while you run, an
 - **Searching and looting slowed**: exposure added at once by searching, looting and events is divided by the slowdown you set (`LootSlowdown`).
 - **Nothing lost to rounding**: the game only adds whole points. When a halved amount has a fraction left over, it is kept and added to the next one, so over time you get exactly the share you set.
 - **Only rises are touched**: anything that lowers exposure keeps its full effect.
-- **Your own numbers**: each setting can be changed in the config, from the game's own rate up to 100 times slower, with a separate setting for searching, picking up, breaking in and events.
-- **Presets**: Vanilla (the game's own exposure), Relaxed (half the game's exposure, running adds none), Tourist (a fifth of the game's exposure) and Hardcore (a third faster than the game).
+- **Your own numbers**: each setting can be changed in the config, from the game's rate up to 100 times slower, with a separate setting for searching, picking up, breaking in and events.
+- **Presets**: Vanilla (the game's exposure), Relaxed (half the game's exposure, running adds none), Tourist (a fifth of the game's exposure) and Hardcore (a third faster than the game).
 - **Danger**: make exposure rise faster as the days pass, or at chosen locations.
 - **Harder than the game, if you want**: with `AllowFasterThanGame` on, a setting below 1 makes exposure rise faster than in the game, up to four times as fast.
 - **Real numbers on the bar**: the Exposure bar shows its points (such as 62 / 100) and about how long until it is full at the current pace.
@@ -29,7 +29,7 @@ Text the mod shows in game (the time to full, warnings and the trip summary) is 
 ## Known issues and limits
 
 - With a slowdown above 1, a small add from searching can show as 0. The fraction is not lost: it is added with the next search or loot.
-- The time to full is an estimate from the last few seconds, in real time, so it changes with game speed and pauses. It can briefly disagree with the game's own bar, which redraws every 2 seconds.
+- The time to full is an estimate from the last few seconds, in real time, so it changes with game speed and pauses. It can briefly disagree with the game's bar, which redraws every 2 seconds.
 - Costs are shown on furniture buttons only. Events and other jumps not tied to a button have no cost shown.
 - Pausing at a warning needs Time Control with `TimeControlOnExpeditions` on, since the game cannot pause or carry on during an expedition by itself.
 - No event in the current game adds exposure, so `EventSlowdown` changes nothing for now.

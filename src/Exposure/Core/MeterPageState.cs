@@ -13,7 +13,7 @@ public readonly record struct MeterReading(double Current, int Max, double? Poin
 
 /// <summary>
 /// What page.js is sent: the numbers on the bar, the time-to-full line under it, and each furniture button's cost by
-/// its function id. A part that is turned off or unknown is null, and the page then leaves the game's own drawing alone.
+/// its function id. A part that is turned off or unknown is null, and the page then leaves the game's drawing alone.
 /// Text is escaped to ASCII so the script stays ASCII.
 /// </summary>
 public static class MeterPageState

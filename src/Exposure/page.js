@@ -47,7 +47,7 @@
   // ===== Expedition meter =====
 
   // Vue draws the meter and drops the whole panel when the expedition ends, taking these with it, so they are put
-  // back on every check. The game's own percent is only hidden by a class, never changed.
+  // back on every check. The game's percent is only hidden by a class, never changed.
   function fixMeter(doc) {
     var panel = doc.querySelector('.exploration-mode-panel');
 
