@@ -17,7 +17,7 @@ namespace Exposure;
 public sealed class Plugin : BasePlugin
 {
     private const string Guid = "com.dev.survivallog.exposure";
-    private const string Version = "0.4.3";
+    private const string Version = "0.4.4";
 
     /// <summary>Exiled's Toolkit: its shared helpers, toasts and live settings all come from it.</summary>
     private const string ToolkitGuid = "com.dev.survivallog.exiledtoolkit";
@@ -45,8 +45,8 @@ public sealed class Plugin : BasePlugin
             $"On an expedition, exposure from time spent out rises this many times slower. 1 is the game's rate. {Range}\n" +
             $"探索时，随时间上涨的暴露值会慢这么多倍。1 为游戏原速。{RangeZh}"));
         var isRunningExposed = Config.Bind("Exposure", "RunningAddsExposure", ExposurePresets.GameExposure.IsRunningExposed, Rule(
-            "When false, running on an expedition adds no exposure. When true, running adds exposure as in the game.\n" +
-            "设为 false 时，探索时跑步不会增加暴露值。设为 true 时，跑步和游戏原本一样增加暴露值。"));
+            "When false, running on an expedition adds no exposure. When true, running adds exposure like it normally does.\n" +
+            "设为 false 时，探索时跑步不会增加暴露值。设为 true 时，跑步照常增加暴露值。"));
         var lootSlowdown = Config.Bind("Exposure", "LootSlowdown", ExposurePresets.GameExposure.LootSlowdown, Rule(
             $"Exposure added at once by searching, picking up, breaking in and events is divided by this, unless that kind has its own setting below. 1 is the game's amount. {Range}\n" +
             $"翻找、拾取、撬开和事件一次性增加的暴露值会除以这个数，除非该类在下方有单独设置。1 为游戏原量。{RangeZh}"));

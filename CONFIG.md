@@ -8,7 +8,7 @@ Settings live in `BepInEx\config\com.dev.survivallog.exposure.cfg`, created the 
 | --- | --- | --- |
 | `Preset` | `Custom` | A ready-made set of settings: `Custom`, `Default`, `Relaxed`, `Tourist` or `Hardcore` (see below). Any preset other than `Custom` replaces every other setting in Exposure and Danger. |
 | `TimeSlowdown` | `1` | On an expedition, exposure from time spent out rises this many times slower. `1` is the game's rate, `2` is half as fast. |
-| `RunningAddsExposure` | `true` | When `false`, running on an expedition adds no exposure on top of time, so running costs the same as walking. When `true`, running adds exposure as in the game. |
+| `RunningAddsExposure` | `true` | When `false`, running on an expedition adds no exposure on top of time, so running costs the same as walking. When `true`, running adds exposure like it normally does. |
 | `LootSlowdown` | `1` | Exposure added at once by searching, picking up, breaking in and events is divided by this, unless that kind has its own setting below. `1` is the game's amount, `2` is half. |
 | `SearchSlowdown` | `0` | Exposure added by searching and looking over furniture is divided by this. `0` uses `LootSlowdown`. |
 | `PickupSlowdown` | `0` | Exposure added by picking up and taking out supplies is divided by this. `0` uses `LootSlowdown`. |

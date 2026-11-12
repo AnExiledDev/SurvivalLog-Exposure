@@ -65,7 +65,7 @@ Settings live in `BepInEx\config\com.dev.survivallog.exposure.cfg`, created the 
 
 ## Troubleshooting
 
-Check `BepInEx\LogOutput.log` for `Exposure 0.4.3 started` (with your version), then a line with your settings (for example `preset Custom: time /2, running off, loot /2, ...`), which shows up again each time you change one. Below it, each `hooked ...` line names a part of the mod that is working. At the start of each expedition a line gives the location id, the day and the danger, and at the end a `trip summary` line lists the exposure from each source. A line starting with `could not hook` names the part that is off and what that means in game.
+Check `BepInEx\LogOutput.log` for `Exposure 0.4.4 started` (with your version), then a line with your settings (for example `preset Custom: time /2, running off, loot /2, ...`), which shows up again each time you change one. Below it, each `hooked ...` line names a part of the mod that is working. At the start of each expedition a line gives the location id, the day and the danger, and at the end a `trip summary` line lists the exposure from each source. A line starting with `could not hook` names the part that is off and what that means in game.
 
 ## Feedback and bug reports
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.4
+
+- Clearer wording in the settings.
+- Made for Survival Log 1.1.20719.
+
 ## 0.4.3
 
 - The preset that keeps the normal exposure is now called Default. If you had it picked, it stays picked.
