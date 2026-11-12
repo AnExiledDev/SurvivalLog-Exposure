@@ -1,45 +1,45 @@
 # Exposure
 
-Slower exposure on expeditions.
+Stay out longer on expeditions by slowing down the Exposure bar.
 
-Out of the box it keeps the game's exposure, so the bar fills as fast as before until you pick the `Relaxed` or `Tourist` preset or set the slowdowns yourself. The meter numbers, search costs, warnings and trip summary work from the start.
+A fresh install keeps the normal exposure, so the bar fills as fast as it always did until you pick the `Relaxed` or `Tourist` preset or set the slowdowns yourself. The numbers on the bar, the search costs, the warnings and the trip summary work from the start.
 
-On an expedition the Exposure bar fills as time passes, faster while you run, and in jumps when you search, loot or hit an event. When it is full, zombies find you. Exposure slows each of those down, so you can stay out longer and look around more before you have to leave. It also shows you what the bar is doing: real numbers, the cost of each search, warnings as it fills, and a summary of each trip.
+On an expedition the Exposure bar fills as time passes, faster while you run, and in jumps when you search, loot or hit an event. When it's full, zombies find you. Exposure lets you slow each of those down, so you can stay out longer and look around more before you have to leave. It also shows you what the bar is doing: real numbers, the cost of each search, warnings as it fills, and a summary of each trip.
 
 ## Features
 
-- **Time exposure slowed**: exposure from time spent out rises as many times slower as you set (`TimeSlowdown`).
-- **Running is free**: turn `RunningAddsExposure` off and running adds no extra exposure. Walking and running cost the same.
-- **Searching and looting slowed**: exposure added at once by searching, looting and events is divided by the slowdown you set (`LootSlowdown`).
-- **Nothing lost to rounding**: the game only adds whole points. When a halved amount has a fraction left over, it is kept and added to the next one, so over time you get exactly the share you set.
-- **Only rises are touched**: anything that lowers exposure keeps its full effect.
-- **Your own numbers**: each setting can be changed in the config, from the game's rate up to 100 times slower, with a separate setting for searching, picking up, breaking in and events.
-- **Presets**: Vanilla (the game's exposure), Relaxed (half the game's exposure, running adds none), Tourist (a fifth of the game's exposure) and Hardcore (a third faster than the game).
-- **Danger**: make exposure rise faster as the days pass, or at chosen locations.
-- **Harder than the game, if you want**: with `AllowFasterThanGame` on, a setting below 1 makes exposure rise faster than in the game, up to four times as fast.
-- **Real numbers on the bar**: the Exposure bar shows its points (such as 62 / 100) and about how long until it is full at the current pace.
-- **Cost before you act**: furniture menu buttons show how much exposure a search, open, pry or pick up will add, such as +25.
-- **Warnings**: a notice and the game's alarm sound when exposure reaches 50, 75 and 90% of the bar. The percents can be set, and with Time Control the game can pause at one of them.
-- **Trip summary**: once you are home, a notice with the exposure the trip added from time, running, searching and looting, and events, and what you brought home and what it is worth.
+- **Slower exposure over time**: you set how many times slower exposure rises while you're out (`TimeSlowdown`).
+- **No exposure from running**: turn `RunningAddsExposure` off and running costs the same as walking.
+- **Slower exposure from searching and looting**: the exposure added at once by searching, looting and events is divided by the number you set (`LootSlowdown`).
+- **Nothing lost to rounding**: the game only adds whole points. When a slowed amount leaves a fraction, the fraction is kept and added to the next one, so over time you get exactly the share you set.
+- **Only rises change**: anything that lowers exposure works the same as before.
+- **A setting for each kind**: every slowdown goes from the game's rate up to 100 times slower, and searching, picking up, breaking in and events can each have their own.
+- **Presets**: Default (the normal exposure), Relaxed (half the exposure, running adds none), Tourist (a fifth of the exposure, running adds none) and Hardcore (a third faster than normal).
+- **Danger**: make exposure rise faster as the days pass, or at locations you pick.
+- **Harder than normal, if you want**: with `AllowFasterThanGame` on, a setting below 1 makes exposure rise faster than normal, up to four times as fast.
+- **Real numbers on the bar**: the Exposure bar shows its points (such as 62 / 100) and about how long until it's full at the current pace.
+- **Costs on the buttons**: furniture menu buttons show how much exposure a search, open, pry or pick up will add, such as +25.
+- **Warnings**: a notice and the game's alarm sound when exposure reaches 50, 75 and 90% of the bar. You can change the percents, and with Time Control the game can pause at one of them.
+- **Trip summary**: once you're home, a notice shows the exposure the trip added from time, running, searching and looting, and events, plus what you brought home and what it's worth.
 
-Exposure only changes how fast the bar fills. It adds nothing to your save and does not edit game files. You can remove it at any time.
+Exposure only changes how fast the bar fills and what it shows. It adds nothing to your save and doesn't edit game files, so you can remove it at any time.
 
 Text the mod shows in game (the time to full, warnings and the trip summary) is in English, or in Simplified Chinese when the game is set to Chinese.
 
 ## Known issues and limits
 
-- With a slowdown above 1, a small add from searching can show as 0. The fraction is not lost: it is added with the next search or loot.
+- With a slowdown above 1, a small add from searching can show as 0. The fraction isn't lost. It's added with the next search or loot.
 - The time to full is an estimate from the last few seconds, in real time, so it changes with game speed and pauses. It can briefly disagree with the game's bar, which redraws every 2 seconds.
-- Costs are shown on furniture buttons only. Events and other jumps not tied to a button have no cost shown.
-- Pausing at a warning needs Time Control with `TimeControlOnExpeditions` on, since the game cannot pause or carry on during an expedition by itself.
-- No event in the current game adds exposure, so `EventSlowdown` changes nothing for now.
-- Settings changed on the Mod Manager's Mods screen take effect at once; a change made in the file needs a restart.
+- Costs only show on furniture buttons. Events and other jumps that don't come from a button show no cost.
+- Pausing at a warning needs Time Control with `TimeControlOnExpeditions` on, because the game can't pause or unpause during an expedition by itself.
+- No event in the current game adds exposure, so `EventSlowdown` does nothing for now.
+- Settings changed on the Mod Manager's Mods screen take effect at once. A change made in the file needs a restart.
 
 ## Requirements
 
-- Survival Log 1.1.20151. Built for this version; a game update can break it until the mod is updated.
+- Survival Log 1.1.20719. Made for this version, so a game update can break it until the mod is updated.
 - The [BepInEx Pack for Survival Log](https://www.nexusmods.com/survivallog/mods/12), the BepInEx 6 (IL2CPP) build for the game.
-- [Exiled's Toolkit](https://github.com/AnExiledDev/SurvivalLog-ExiledToolkit) 0.19.0 or newer. Exposure does not load without it. It shows the warning and trip summary notices as toasts and applies settings changed on the Mod Manager's Mods screen without a restart.
+- [Exiled's Toolkit](https://github.com/AnExiledDev/SurvivalLog-ExiledToolkit) 0.19.0 or newer. Exposure doesn't load without it. It shows the warning and trip summary notices as toasts, and it applies settings changed on the Mod Manager's Mods screen without a restart.
 - Optional: [Time Control](https://www.nexusmods.com/survivallog/mods/47), with `TimeControlOnExpeditions` on, to pause the game at a warning.
 - Optional: [Mod Manager](https://www.nexusmods.com/survivallog/mods/73). With it, you can change every setting in game on its Mods screen and see what each one does, without opening the config file.
 
@@ -57,33 +57,33 @@ Delete `Exposure.dll` from the `BepInEx\plugins` folder. For a clean slate, also
 
 ## Keys
 
-None. The mod has no hotkeys or buttons; it works on its own once installed.
+None. The mod has no hotkeys or buttons, and it works on its own once installed.
 
 ## Configuration
 
-Settings live in `BepInEx\config\com.dev.survivallog.exposure.cfg`, created the first time the game starts with the mod. Change them in game on the Mod Manager's Mods screen, where they take effect at once, or edit the file while the game is closed. See [CONFIG.md](CONFIG.md) for every setting. Each world can keep its own Exposure and Danger settings (all but `Locations`): pick them for a new world in Customizable Difficulty, or, while you play, change them for that world alone on the Mods screen.
+Settings live in `BepInEx\config\com.dev.survivallog.exposure.cfg`, created the first time the game starts with the mod. Change them in game on the Mod Manager's Mods screen, where they take effect at once, or edit the file while the game is closed. See [CONFIG.md](CONFIG.md) for every setting. Each world can keep its own Exposure and Danger settings (all but `Locations`). Pick them for a new world in Customizable Difficulty, or change them for the world you're playing on the Mods screen.
 
 ## Troubleshooting
 
-Check `BepInEx\LogOutput.log` for `Exposure 0.3.0 started`, then a line with your settings (for example `preset Custom: time /2, running off, loot /2, ...`), which comes again each time you change one. Below it, each `hooked ...` line names a part of the mod that is working. At the start of each expedition a line gives the location id, the day and the danger, and at the end a `trip summary` line lists the exposure from each source. A line starting with `could not hook` names the part that is off and what that means in game.
+Check `BepInEx\LogOutput.log` for `Exposure 0.4.3 started` (with your version), then a line with your settings (for example `preset Custom: time /2, running off, loot /2, ...`), which shows up again each time you change one. Below it, each `hooked ...` line names a part of the mod that is working. At the start of each expedition a line gives the location id, the day and the danger, and at the end a `trip summary` line lists the exposure from each source. A line starting with `could not hook` names the part that is off and what that means in game.
 
 ## Feedback and bug reports
 
-Found a bug, have an idea, or something feels off? Come say so on the Core Directive Discord: https://discord.gg/trTsyxUFqg . You can also post in the Posts tab of the mod's Nexus Mods page. When reporting a bug, attach `BepInEx\LogOutput.log`.
+Found a bug, have an idea, or something feels off? Come tell me on the Core Directive Discord: https://discord.gg/trTsyxUFqg . You can also post in the Posts tab of the mod's Nexus Mods page. When reporting a bug, attach `BepInEx\LogOutput.log`.
 
-To reach me directly, message `exiled.dev` on Discord; you can find me in the [official Survival Log Discord](https://discord.gg/MZGg4gQAUe). I'm also on X as [@AnExiledDev](https://x.com/AnExiledDev).
+To reach me directly, message `exiled.dev` on Discord. You can find me in the [official Survival Log Discord](https://discord.gg/MZGg4gQAUe). I'm also on X as [@AnExiledDev](https://x.com/AnExiledDev).
 
 A Survival Log wiki with detailed documentation for all of my mods is coming soon.
 
 ## Build
 
-This is a BepInEx 6 IL2CPP plugin. It compiles against BepInEx and the game's IL2CPP interop assemblies, so a game install with BepInEx set up and started once is required. Those assemblies come from the game and are not part of this repo. The .NET 8 SDK is required.
+This is a BepInEx 6 IL2CPP plugin. It compiles against BepInEx and the game's IL2CPP interop assemblies, so you need a game install with BepInEx set up and started once. Those assemblies come from the game and aren't part of this repo. You also need the .NET 8 SDK.
 
 ```
 dotnet build src/Exposure -c Release -p:GameDir="C:\path\to\Survival Log"
 ```
 
-`GameDir` is the game folder. The default in the project file is a local path you will almost certainly need to override. The output DLL is at `src\Exposure\bin\Release\Exposure.dll`.
+`GameDir` is the game folder. The default in the project file is a local path you'll almost certainly need to override. The output DLL is at `src\Exposure\bin\Release\Exposure.dll`.
 
 The unit tests cover the pure rules (exposure, danger, presets, warnings, the trip summary and the meter) and need nothing from the game:
 

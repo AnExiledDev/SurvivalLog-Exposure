@@ -20,11 +20,11 @@ internal static class WarningOptions
             "Play the game's exposure alarm, the zombie roar, when exposure reaches a warning percent.\n" +
             "暴露值达到提醒百分比时，播放游戏自带的暴露警报声（丧尸的吼叫）。");
         var pauseAt = config.Bind("Warnings", "PauseAt", 0,
-            $"Pause the game when exposure first reaches this percent of the bar on an expedition. 0 is off. The game itself cannot pause or carry on during an expedition, so this needs Time Control with TimeControlOnExpeditions on; without it the game is not paused and the warning says why. From 0 to {WarningRules.MaxPercent}.\n" +
-            $"探索中暴露值首次达到暴露值上限的这个百分比时暂停游戏。0 为关闭。游戏本身在探索中无法暂停和继续，所以需要安装 Time Control 并开启 TimeControlOnExpeditions；否则不会暂停，提醒中会说明原因。范围 0 到 {WarningRules.MaxPercent}。");
+            $"Pause the game when exposure first reaches this percent of the bar on an expedition. 0 is off. The game can't pause or unpause during an expedition by itself, so this needs Time Control with TimeControlOnExpeditions on. Without it the game doesn't pause, and the warning tells you why. From 0 to {WarningRules.MaxPercent}.\n" +
+            $"探索中暴露值首次达到暴露值上限的这个百分比时暂停游戏。0 为关闭。游戏本身在探索中无法暂停和继续，所以需要安装 Time Control 并开启 TimeControlOnExpeditions。否则不会暂停，提醒中会说明原因。范围 0 到 {WarningRules.MaxPercent}。");
         var isSummaryOn = config.Bind("Trip", "ShowSummary", true,
             "Once you are home from an expedition, show a notice with the exposure the trip added from time, running, searching and looting, events and anything else, and how many items you brought home and what they are worth. The summary is always written to the log.\n" +
-            "探索结束回到家后显示一条通知，列出这次探索中时间、跑步、翻找和拾取、事件及其他来源增加的暴露值，以及带回家的物品数量和价值。总结总会写入日志。");
+            "探索结束回到家后显示一条通知，列出这次探索中时间、跑步、翻找和拾取、事件及其他来源增加的暴露值，以及带回家的物品数量和价值。总结始终会写入日志。");
 
         LiveSettings.Watch(() =>
         {

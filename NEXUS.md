@@ -1,39 +1,39 @@
 Name: Exposure
-Summary: Stay out longer on expeditions: set how much slower the Exposure bar fills over time and from searches, and whether running adds any, or pick a preset from Vanilla to Hardcore. It starts at the game's exposure. Real numbers on the bar, the cost of each search, warnings at 50, 75 and 90%, a trip summary, and danger that grows by day or location.
+Summary: Stay out longer on expeditions: set how much slower the Exposure bar fills over time and from searches, and whether running adds any, or pick a preset from Default to Hardcore. A fresh install keeps the normal exposure. Real numbers on the bar, the cost of each search, warnings at 50, 75 and 90%, a trip summary, and danger that grows by day or location.
 
 Description (BBCode):
 [center][img]https://sldb.core-directive.com/media/save/1-save-safe.png[/img][/center]
 
 Always running out of time on an expedition before you have seen half the map? Exposure slows down how fast the Exposure bar fills, so you can stay out longer and search more before the zombies find you.
 
-Out of the box it keeps the game's exposure: pick the [b]Relaxed[/b] or [b]Tourist[/b] preset, or set the slowdowns yourself, to make the bar fill slower. The meter numbers, search costs, warnings and trip summary work from the start.
+A fresh install keeps the normal exposure. Pick the [b]Relaxed[/b] or [b]Tourist[/b] preset, or set the slowdowns yourself, to make the bar fill slower. The numbers on the bar, the search costs, the warnings and the trip summary work from the start.
 
 [size=5]Main features[/size]
 [list]
-[*][b]Time exposure slowed[/b]: exposure from time spent out rises as many times slower as you set.[/*]
-[*][b]Running is free[/b]: set [font=Courier New]RunningAddsExposure[/font] to false and running adds no extra exposure, so it costs the same as walking.[/*]
-[*][b]Searching and looting slowed[/b]: exposure added at once by searching, looting and events is divided by the slowdown you set.[/*]
-[*][b]Nothing lost to rounding[/b]: when a halved amount leaves a fraction, it is kept and added with the next one.[/*]
-[*][b]Only rises are touched[/b]: anything that lowers exposure keeps its full effect.[/*]
-[*][b]Your own numbers[/b]: every setting can be changed in the config, from the game's rate up to 100 times slower, with a separate setting for searching, picking up, breaking in and events.[/*]
-[*][b]Presets[/b]: Vanilla (the game's exposure), Relaxed (half the game's exposure, running adds none), Tourist (a fifth of the game's exposure) and Hardcore (a third faster than the game).[/*]
-[*][b]Danger[/b]: make exposure rise faster as the days pass, or at chosen locations.[/*]
-[*][b]Harder than the game, if you want[/b]: with AllowFasterThanGame on, a setting below 1 makes exposure rise faster than in the game, up to four times as fast.[/*]
-[*][b]Real numbers on the bar[/b]: the Exposure bar shows its points (such as 62 / 100) and about how long until it is full at the current pace.[/*]
-[*][b]Cost before you act[/b]: furniture menu buttons show how much exposure a search, open, pry or pick up will add, such as +25.[/*]
-[*][b]Warnings[/b]: a notice and the game's alarm sound when exposure reaches 50, 75 and 90% of the bar. The percents can be set, and with Time Control the game can pause at one of them.[/*]
-[*][b]Trip summary[/b]: once you are home, a notice with the exposure the trip added from each source, and what you brought home and what it is worth.[/*]
+[*][b]Slower exposure over time[/b]: you set how many times slower exposure rises while you're out.[/*]
+[*][b]No exposure from running[/b]: set [font=Courier New]RunningAddsExposure[/font] to false and running costs the same as walking.[/*]
+[*][b]Slower exposure from searching and looting[/b]: the exposure added at once by searching, looting and events is divided by the number you set.[/*]
+[*][b]Nothing lost to rounding[/b]: when a slowed amount leaves a fraction, the fraction is kept and added to the next one.[/*]
+[*][b]Only rises change[/b]: anything that lowers exposure works the same as before.[/*]
+[*][b]A setting for each kind[/b]: every slowdown goes from the game's rate up to 100 times slower, and searching, picking up, breaking in and events can each have their own.[/*]
+[*][b]Presets[/b]: Default (the normal exposure), Relaxed (half the exposure, running adds none), Tourist (a fifth of the exposure, running adds none) and Hardcore (a third faster than normal).[/*]
+[*][b]Danger[/b]: make exposure rise faster as the days pass, or at locations you pick.[/*]
+[*][b]Harder than normal, if you want[/b]: with AllowFasterThanGame on, a setting below 1 makes exposure rise faster than normal, up to four times as fast.[/*]
+[*][b]Real numbers on the bar[/b]: the Exposure bar shows its points (such as 62 / 100) and about how long until it's full at the current pace.[/*]
+[*][b]Costs on the buttons[/b]: furniture menu buttons show how much exposure a search, open, pry or pick up will add, such as +25.[/*]
+[*][b]Warnings[/b]: a notice and the game's alarm sound when exposure reaches 50, 75 and 90% of the bar. You can change the percents, and with Time Control the game can pause at one of them.[/*]
+[*][b]Trip summary[/b]: once you're home, a notice shows the exposure the trip added from each source, plus what you brought home and what it's worth.[/*]
 [/list]
-Exposure only changes how fast the bar fills. It adds nothing to your save and does not edit game files. You can remove it at any time.
+Exposure only changes how fast the bar fills and what it shows. It adds nothing to your save and doesn't edit game files, so you can remove it at any time.
 
 Text the mod shows in game is in English, or in Simplified Chinese when the game is set to Chinese.
 
 [size=5]Known issues[/size]
 [list]
-[*]With a slowdown above 1, a small add from searching can show as 0; the fraction is added with the next one.[/*]
+[*]With a slowdown above 1, a small add from searching can show as 0. The fraction isn't lost. It's added with the next one.[/*]
 [*]The time to full is an estimate in real time, so it changes with game speed and pauses.[/*]
-[*]Pausing at a warning needs Time Control with TimeControlOnExpeditions on, since the game cannot pause during an expedition by itself.[/*]
-[*]No event in the current game adds exposure, so EventSlowdown changes nothing for now.[/*]
+[*]Pausing at a warning needs Time Control with TimeControlOnExpeditions on, because the game can't pause during an expedition by itself.[/*]
+[*]No event in the current game adds exposure, so EventSlowdown does nothing for now.[/*]
 [/list]
 
 [center][img]https://sldb.core-directive.com/img/mods-banner.jpg[/img]
@@ -41,9 +41,9 @@ Text the mod shows in game is in English, or in Simplified Chinese when the game
 
 [size=5]Requirements[/size]
 [list]
-[*]Survival Log 1.1.20151. A game update can break it until the mod is updated.[/*]
+[*]Survival Log 1.1.20719. A game update can break it until the mod is updated.[/*]
 [*][url=https://www.nexusmods.com/survivallog/mods/12]BepInEx for Survival Log[/url]. Install it first.[/*]
-[*][url=https://www.nexusmods.com/survivallog/mods/61]Exiled's Toolkit[/url] 0.19.0 or newer. Exposure does not load without it. It shows the warning and trip summary notices as toasts and applies settings changed on the Mod Manager's Mods screen without a restart.[/*]
+[*][url=https://www.nexusmods.com/survivallog/mods/61]Exiled's Toolkit[/url] 0.19.0 or newer. Exposure doesn't load without it. It shows the warning and trip summary notices as toasts, and it applies settings changed on the Mod Manager's Mods screen without a restart.[/*]
 [*]Optional: [url=https://www.nexusmods.com/survivallog/mods/47]Time Control[/url], with TimeControlOnExpeditions on, to pause the game at a warning.[/*]
 [*]Optional: [url=https://www.nexusmods.com/survivallog/mods/73]Mod Manager[/url]. With it, you can change every setting in game on its Mods screen and see what each one does, without opening the config file.[/*]
 [/list]
@@ -61,13 +61,13 @@ Text the mod shows in game is in English, or in Simplified Chinese when the game
 Delete [font=Courier New]Exposure.dll[/font] from the [font=Courier New]BepInEx\plugins[/font] folder.
 
 [size=5]Configuration[/size]
-To change settings, edit [font=Courier New]BepInEx\config\com.dev.survivallog.exposure.cfg[/font] while the game is closed, or do it in game on the Mod Manager's Mods screen, where changes take effect at once (see [url=https://github.com/AnExiledDev/SurvivalLog-Exposure/blob/main/CONFIG.md]CONFIG.md[/url] for every setting). Each world can keep its own Exposure and Danger settings (all but [font=Courier New]Locations[/font]): pick them for a new world in Customizable Difficulty, or, while you play, change them for that world alone on the Mods screen.
+To change settings, edit [font=Courier New]BepInEx\config\com.dev.survivallog.exposure.cfg[/font] while the game is closed, or do it in game on the Mod Manager's Mods screen, where changes take effect at once (see [url=https://github.com/AnExiledDev/SurvivalLog-Exposure/blob/main/CONFIG.md]CONFIG.md[/url] for every setting). Each world can keep its own Exposure and Danger settings (all but [font=Courier New]Locations[/font]). Pick them for a new world in Customizable Difficulty, or change them for the world you're playing on the Mods screen.
 [list]
 [*][font=Courier New]TimeSlowdown[/font] (default 1, the game's rate): how many times slower exposure from time rises.[/*]
 [*][font=Courier New]RunningAddsExposure[/font] (default true): set to false so running adds no exposure on top of time.[/*]
 [*][font=Courier New]LootSlowdown[/font] (default 1, the game's amount): exposure from searching, picking up, breaking in and events is divided by this.[/*]
-[*][font=Courier New]SearchSlowdown[/font], [font=Courier New]PickupSlowdown[/font], [font=Courier New]BreakInSlowdown[/font], [font=Courier New]EventSlowdown[/font] (default 0): a separate slowdown for each kind; 0 follows LootSlowdown.[/*]
-[*][font=Courier New]Preset[/font] (default Custom): Vanilla, Relaxed, Tourist or Hardcore replace every other exposure and danger setting.[/*]
+[*][font=Courier New]SearchSlowdown[/font], [font=Courier New]PickupSlowdown[/font], [font=Courier New]BreakInSlowdown[/font], [font=Courier New]EventSlowdown[/font] (default 0): a separate slowdown for each kind. 0 uses LootSlowdown.[/*]
+[*][font=Courier New]Preset[/font] (default Custom): Default, Relaxed, Tourist or Hardcore replaces every other exposure and danger setting.[/*]
 [*][font=Courier New]AllowFasterThanGame[/font] (default false): lets a setting below 1 make exposure rise faster than in the game.[/*]
 [*]Danger: [font=Courier New]StartMultiplier[/font], [font=Courier New]EndMultiplier[/font], [font=Courier New]RampDays[/font] and [font=Courier New]Locations[/font] make exposure rise faster by day or location.[/*]
 [*]Meter: [font=Courier New]ShowNumbers[/font], [font=Courier New]ShowTimeToFull[/font] and [font=Courier New]ShowCosts[/font] (all on by default).[/*]
@@ -77,7 +77,7 @@ To change settings, edit [font=Courier New]BepInEx\config\com.dev.survivallog.ex
 
 [size=5]Feedback[/size]
 Found a bug or have an idea? Come say hi on the [url=https://discord.gg/trTsyxUFqg]Core Directive Discord[/url], or post in this page's Posts tab. For bugs, please include [font=Courier New]BepInEx\LogOutput.log[/font].
-To reach me directly, message [b]exiled.dev[/b] on Discord; you can find me in the [url=https://discord.gg/MZGg4gQAUe]official Survival Log Discord[/url]. I'm also on X as [url=https://x.com/AnExiledDev]@AnExiledDev[/url].
+To reach me directly, message [b]exiled.dev[/b] on Discord. You can find me in the [url=https://discord.gg/MZGg4gQAUe]official Survival Log Discord[/url]. I'm also on X as [url=https://x.com/AnExiledDev]@AnExiledDev[/url].
 
 [size=5]Source and license[/size]
 Open source under MIT: [url=https://github.com/AnExiledDev/SurvivalLog-Exposure]github.com/AnExiledDev/SurvivalLog-Exposure[/url]
@@ -87,17 +87,17 @@ Open source under MIT: [url=https://github.com/AnExiledDev/SurvivalLog-Exposure]
 
 探索时还没逛完半张地图，暴露值就快满了？Exposure 会让暴露值涨得更慢，让你在被丧尸发现之前，能在外面待得更久、翻找更多地方。
 
-默认保持游戏原本的暴露值：选择「Relaxed」或「Tourist」预设，或自己设置慢速倍数，暴露值才会涨得更慢。暴露值数字、行动消耗、提醒和探索总结一开始就能用。
+新装时暴露值和原本一样。选择「Relaxed」或「Tourist」预设，或自己设置慢速倍数，就能让暴露值涨得更慢。暴露值数字、行动消耗、提醒和探索总结一开始就能用。
 
 [size=5]主要功能[/size]
 [list]
 [*][b]随时间上涨变慢[/b]：探索时随时间上涨的暴露值，按你设置的倍数变慢。[/*]
 [*][b]跑步不额外增加[/b]：把 RunningAddsExposure 设为 false 后，跑步不会额外增加暴露值，跑和走的消耗一样。[/*]
 [*][b]翻找和拾取变少[/b]：翻找、拾取和事件一次性增加的暴露值会除以你设置的倍数。[/*]
-[*][b]零头不会丢[/b]：减半后剩下的小数部分会保留下来，加到下一次里。[/*]
+[*][b]零头不会丢[/b]：变慢后剩下的小数部分会保留下来，加到下一次里。[/*]
 [*][b]只减缓上涨[/b]：所有降低暴露值的效果都保持原样。[/*]
 [*][b]数值可调[/b]：每项设置都能在配置中修改，从游戏原速到慢 100 倍都可以，翻找、拾取、撬开和事件各有单独设置。[/*]
-[*][b]预设[/b]：Vanilla（游戏原本的暴露值）、Relaxed（游戏的一半，跑步不增加）、Tourist（只有游戏的五分之一）和 Hardcore（比游戏快三分之一）。[/*]
+[*][b]预设[/b]：Default（原本的暴露值）、Relaxed（一半的暴露值，跑步不增加）、Tourist（五分之一的暴露值，跑步不增加）和 Hardcore（比原本快三分之一）。[/*]
 [*][b]危险度[/b]：让暴露值随天数增加或在指定地点上涨更快。[/*]
 [*][b]也可以比游戏更难[/b]：开启 AllowFasterThanGame 后，低于 1 的数值会让暴露值比游戏上涨更快，最快四倍速。[/*]
 [*][b]暴露值显示数字[/b]：暴露值条显示具体点数（例如 62 / 100），以及按当前速度大约多久后涨满。[/*]
@@ -105,9 +105,9 @@ Open source under MIT: [url=https://github.com/AnExiledDev/SurvivalLog-Exposure]
 [*][b]提醒[/b]：暴露值达到上限的 50%、75% 和 90% 时显示通知并播放游戏的警报声。百分比可以修改，装了 Time Control 还能在其中一个百分比暂停游戏。[/*]
 [*][b]探索总结[/b]：回到家后显示一条通知，列出这次探索中各来源增加的暴露值，以及带回家的物品和价值。[/*]
 [/list]
-Exposure 只改变暴露值上涨的快慢，不会往存档里添加任何内容，也不会修改游戏文件，随时可以移除。
+Exposure 只改变暴露值上涨的快慢和显示方式，不会往存档里添加任何内容，也不会修改游戏文件，随时可以移除。
 
-模组在游戏中显示的文字为英文；游戏设为中文时显示简体中文。
+模组在游戏中显示的文字为英文，游戏设为中文时显示简体中文。
 
 [size=5]已知问题[/size]
 [list]
@@ -121,7 +121,7 @@ Exposure 只改变暴露值上涨的快慢，不会往存档里添加任何内�
 
 [size=5]前置要求[/size]
 [list]
-[*]Survival Log 1.1.20151。游戏更新后模组可能暂时失效，直到模组更新为止。[/*]
+[*]Survival Log 1.1.20719。游戏更新后模组可能暂时失效，直到模组更新为止。[/*]
 [*][url=https://www.nexusmods.com/survivallog/mods/12]BepInEx for Survival Log[/url]，请先安装。[/*]
 [*][url=https://www.nexusmods.com/survivallog/mods/61]Exiled's Toolkit[/url] 0.19.0 或更新版本。没有它本模组不会加载。它把提醒和探索总结的通知以弹窗显示，并让在 Mod Manager 的「模组」界面改动的设置无需重启游戏即可生效。[/*]
 [*]可选：[url=https://www.nexusmods.com/survivallog/mods/47]Time Control[/url]，开启 TimeControlOnExpeditions 后可以在提醒时暂停游戏。[/*]
@@ -147,7 +147,7 @@ Exposure 只改变暴露值上涨的快慢，不会往存档里添加任何内�
 [*][font=Courier New]RunningAddsExposure[/font]（默认 true）：设为 false 后，跑步不会额外增加暴露值。[/*]
 [*][font=Courier New]LootSlowdown[/font]（默认 1，游戏原量）：翻找、拾取、撬开和事件增加的暴露值会除以这个数。[/*]
 [*][font=Courier New]SearchSlowdown[/font]、[font=Courier New]PickupSlowdown[/font]、[font=Courier New]BreakInSlowdown[/font]、[font=Courier New]EventSlowdown[/font]（默认 0）：每类单独的慢速倍数，0 表示使用 LootSlowdown。[/*]
-[*][font=Courier New]Preset[/font]（默认 Custom）：选择 Vanilla、Relaxed、Tourist 或 Hardcore 会替换其他所有暴露值和危险度设置。[/*]
+[*][font=Courier New]Preset[/font]（默认 Custom）：选择 Default、Relaxed、Tourist 或 Hardcore 会替换其他所有暴露值和危险度设置。[/*]
 [*][font=Courier New]AllowFasterThanGame[/font]（默认 false）：允许低于 1 的数值让暴露值比游戏上涨更快。[/*]
 [*]危险度：[font=Courier New]StartMultiplier[/font]、[font=Courier New]EndMultiplier[/font]、[font=Courier New]RampDays[/font] 和 [font=Courier New]Locations[/font] 让暴露值随天数或地点上涨更快。[/*]
 [*]显示：[font=Courier New]ShowNumbers[/font]、[font=Courier New]ShowTimeToFull[/font] 和 [font=Courier New]ShowCosts[/font]（默认全部开启）。[/*]

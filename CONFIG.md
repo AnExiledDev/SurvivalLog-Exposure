@@ -1,12 +1,12 @@
 # Exposure settings
 
-Settings live in `BepInEx\config\com.dev.survivallog.exposure.cfg`, created the first time the game starts with the mod. Change them in game on the Mod Manager's Mods screen, where they take effect at once, or edit the file while the game is closed. Delete the file to get the defaults back. Each world can keep its own Exposure and Danger settings (all but `Locations`): pick them for a new world in Customizable Difficulty, or, while you play, change them for that world alone on the Mods screen.
+Settings live in `BepInEx\config\com.dev.survivallog.exposure.cfg`, created the first time the game starts with the mod. Change them in game on the Mod Manager's Mods screen, where they take effect at once, or edit the file while the game is closed. Delete the file to get the defaults back. Each world can keep its own Exposure and Danger settings (all but `Locations`). Pick them for a new world in Customizable Difficulty, or change them for the world you're playing on the Mods screen.
 
 ## Exposure
 
 | Setting | Default | What it does |
 | --- | --- | --- |
-| `Preset` | `Custom` | A ready-made set of settings: `Custom`, `Vanilla`, `Relaxed`, `Tourist` or `Hardcore` (see below). Any preset other than `Custom` replaces every other setting in Exposure and Danger. |
+| `Preset` | `Custom` | A ready-made set of settings: `Custom`, `Default`, `Relaxed`, `Tourist` or `Hardcore` (see below). Any preset other than `Custom` replaces every other setting in Exposure and Danger. |
 | `TimeSlowdown` | `1` | On an expedition, exposure from time spent out rises this many times slower. `1` is the game's rate, `2` is half as fast. |
 | `RunningAddsExposure` | `true` | When `false`, running on an expedition adds no exposure on top of time, so running costs the same as walking. When `true`, running adds exposure as in the game. |
 | `LootSlowdown` | `1` | Exposure added at once by searching, picking up, breaking in and events is divided by this, unless that kind has its own setting below. `1` is the game's amount, `2` is half. |
@@ -20,18 +20,18 @@ The slowdowns take whole or decimal numbers (such as `1.5`) from 1 to 100, or fr
 
 The game only adds whole points of exposure. When a slowdown leaves a fraction (5 divided by 2 is 2.5), the whole part is added now and the fraction is kept for the next add, so a search can show 2 and the next one 3.
 
-None of the settings change anything that lowers exposure; those keep the game's full effect.
+The settings only change how fast exposure rises. Anything that lowers exposure still lowers it by the full amount.
 
 ### Presets
 
 | Preset | Time | Running | Searching, picking up, breaking in, events |
 | --- | --- | --- | --- |
-| `Vanilla` | game's rate | adds exposure | game's amount |
+| `Default` | normal rate | adds exposure | normal amount |
 | `Relaxed` | half as fast | adds none | half |
 | `Tourist` | a fifth as fast | adds none | a fifth |
 | `Hardcore` | a third faster than the game | adds exposure at the game's rate | a third more than the game |
 
-The default `Custom` settings are the same as `Vanilla`. Presets ignore the Danger settings.
+The default `Custom` settings are the same as `Default`. Presets ignore the Danger settings.
 
 ## Danger
 
@@ -40,9 +40,9 @@ Danger makes exposure rise faster on top of the Exposure settings. It is used wi
 | Setting | Default | What it does |
 | --- | --- | --- |
 | `StartMultiplier` | `1` | How many times faster exposure rises on day 1. `1` changes nothing, `2` is twice as fast, `0.5` is half as fast. From 0.1 to 10. |
-| `EndMultiplier` | `1` | How many times faster exposure rises from day `RampDays` on. Between day 1 and that day it changes evenly from `StartMultiplier` to this. From 0.1 to 10. |
+| `EndMultiplier` | `1` | How many times faster exposure rises once day `RampDays` is reached. Before that day, the multiplier climbs evenly from `StartMultiplier` on day 1. From 0.1 to 10. |
 | `RampDays` | `30` | The day on which `EndMultiplier` is reached. `1` uses `EndMultiplier` from the first day. |
-| `Locations` | empty | Extra multipliers for single locations, written as `id=multiplier` and separated by commas, such as `1002=1.5, 1005=2`. Ids: 1000 Community Maintenance Hut, 1001 Gas Station, 1002 Abandoned School, 1003 Tech Company, 1004 Deserted Supermarket, 1005 Abandoned Hospital. Applied on top of the day multiplier. |
+| `Locations` | empty | Extra multipliers for single locations, written as `id=multiplier` and separated by commas, such as `1002=1.5, 1005=2`. Ids: 1000 Hardware Store, 1002 Abandoned School, 1003 Tech Company, 1004 Deserted Supermarket, 1005 Abandoned Hospital. Applied on top of the day multiplier. |
 
 The log shows the location id and day at the start of each expedition (`expedition at location 1002 on day 4, danger x1.2`).
 
@@ -61,7 +61,7 @@ The log shows the location id and day at the start of each expedition (`expediti
 | `Thresholds` | `50,75,90` | Warn when exposure first reaches each of these percents of the bar. Whole numbers from 1 to 100, separated by commas. Each warns once per trip. Leave empty for no warnings. |
 | `Toast` | `true` | Show a notice when a warning percent is reached. Every warning is also written to the log. |
 | `Sound` | `true` | Play the game's exposure alarm, the zombie roar, when a warning percent is reached. |
-| `PauseAt` | `0` | Pause the game when exposure first reaches this percent. `0` is off. The game cannot pause or carry on during an expedition by itself, so this needs Time Control with `TimeControlOnExpeditions` on; without it the game is not paused and the warning says why. |
+| `PauseAt` | `0` | Pause the game when exposure first reaches this percent. `0` is off. The game can't pause or unpause during an expedition by itself, so this needs Time Control with `TimeControlOnExpeditions` on. Without it the game doesn't pause, and the warning tells you why. |
 
 ## Trip
 

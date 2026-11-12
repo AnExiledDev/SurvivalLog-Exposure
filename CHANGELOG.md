@@ -1,8 +1,15 @@
 # Changelog
 
+## 0.4.3
+
+- The preset that keeps the normal exposure is now called Default. If you had it picked, it stays picked.
+- Clearer wording in the settings.
+- The `Locations` setting now gives the right name for location 1000, the Hardware Store.
+- Made for Survival Log 1.1.20719.
+
 ## 0.4.2
 
-- A new install now starts at the game's exposure: `TimeSlowdown` 1, `RunningAddsExposure` true and `LootSlowdown` 1. Pick the `Relaxed` preset for the old defaults (half as fast, running adds none). Settings you already saved are kept.
+- A new install now keeps the normal exposure: `TimeSlowdown` 1, `RunningAddsExposure` true and `LootSlowdown` 1. Pick the `Relaxed` preset for the old defaults (half as fast, running adds none). Settings you already saved are kept.
 - Made for Survival Log 1.1.20719.
 
 ## 0.4.1
@@ -30,7 +37,7 @@
 - Separate settings for searching, picking up, breaking in and events. Each one left at 0 follows `LootSlowdown`.
 - Danger settings make exposure rise faster as the days pass, or at chosen locations.
 - `AllowFasterThanGame` lets a setting below 1 make exposure rise faster than in the game, up to four times as fast.
-- Presets: Vanilla, Relaxed, Tourist and Hardcore. The default, Custom, keeps your own settings.
+- Presets: Default, Relaxed, Tourist and Hardcore. Custom, the preset you start on, uses your own settings.
 - With the default settings, exposure rises exactly as in 0.2.1.
 - Made for Survival Log 1.1.19131.
 

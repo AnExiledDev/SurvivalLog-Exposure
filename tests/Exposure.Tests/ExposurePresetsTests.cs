@@ -98,9 +98,9 @@ public class ExposurePresetsTests
     }
 
     [Fact]
-    public void Vanilla_is_the_games_own_exposure_whatever_else_is_set()
+    public void Default_is_the_normal_exposure_whatever_else_is_set()
     {
-        var settings = ExposurePresets.Resolve(Tuned with { Preset = "Vanilla" }).Settings;
+        var settings = ExposurePresets.Resolve(Tuned with { Preset = "Default" }).Settings;
         var danger = settings.Danger.Multiplier(40, 1005);
 
         Assert.Equal(2f, settings.TimeRate(2f, danger));
@@ -160,6 +160,6 @@ public class ExposurePresetsTests
     [Fact]
     public void Unreadable_locations_are_reported_even_under_a_preset()
     {
-        Assert.Equal(new[] { "school=2" }, ExposurePresets.Resolve(Defaults with { Preset = "Vanilla", Locations = "school=2" }).IgnoredLocations);
+        Assert.Equal(new[] { "school=2" }, ExposurePresets.Resolve(Defaults with { Preset = "Default", Locations = "school=2" }).IgnoredLocations);
     }
 }
